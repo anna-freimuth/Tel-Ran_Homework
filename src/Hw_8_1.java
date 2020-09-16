@@ -1,11 +1,11 @@
 public class Hw_8_1 {
     public static void main(String[] args) {
         int age = 20;   //age of a costumer
-        SellerActions(age);
+        sellerActions(age);
 
     }
 
-    public static void SellerActions(int costumerAge) {
+    public static void sellerActions(int costumerAge) {
         switch(costumerAge){
             case 10:
                 System.out.println("Impossible to sell alcohol to a customer");
