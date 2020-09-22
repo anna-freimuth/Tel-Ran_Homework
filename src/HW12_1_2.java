@@ -1,5 +1,5 @@
 
-public class HW11_1_2 {
+public class HW12_1_2 {
     public static void main(String[] args) {
         System.out.println(citiWeather("Минск", "Пятница"));//->22
         System.out.println(citiWeather("Лиссабон", "Четверг"));// -> 28

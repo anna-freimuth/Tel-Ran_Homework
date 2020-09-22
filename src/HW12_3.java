@@ -1,4 +1,4 @@
-public class HW11_3 {
+public class HW12_3 {
     public static void main(String[] args) {
         //contains(CharSequence s)
     //Returns true if and only if this string contains the specified sequence of char values.

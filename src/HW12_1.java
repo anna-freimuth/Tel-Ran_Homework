@@ -1,4 +1,4 @@
-public class HW11_1 {
+public class HW12_1 {
 
     public static void main(String[] args) {
         System.out.println(citiWeather("Берлин"));
