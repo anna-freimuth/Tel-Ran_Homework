@@ -1,23 +1,23 @@
 public class HW14_3 {
     public static void main(String[] args) {
-         chessBoard(8);
+         chessBoard(7);
     }
 
     private static void chessBoard(int lines) {
-        String star = "*";
-        String dash = "-";
-        String myLine = "";
-        String anotherLine = "";
         for (int i = 0; i < lines ; i++) {
-            myLine = (star + dash);
-            anotherLine = ( dash + star);
-            if (i % 2 == 0) {
-                System.out.println(myLine + myLine + myLine + myLine);
-            } else {
-                System.out.println(anotherLine + anotherLine + anotherLine + anotherLine);
-            }
+            amountOfCharacters(lines, i % 2);
         }
     }
 
+    private static void amountOfCharacters(int numberOfCharacters, int startStar) {
+        for (int i = 1; i <= numberOfCharacters; i++) {
 
+            if (i % 2 == startStar){
+                System.out.print("-");
+            }else{
+                System.out.print("*");
+            }
+        }
+        System.out.println();
+    }
 }
