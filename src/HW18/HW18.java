@@ -7,20 +7,7 @@ public class HW18 {
     }
 
     private static void calculateTilingCosts(int length, int width, double singleTileCost) {
-
-        //Нам известно, что в час он кладёт примерно один квадратный метр плитки.
-        //Его час стоит 27€ без НДС.
-        //Стандартная плитка 30 на 20 сантиметров.
-        // method should принимать размеры стены/пола, стоимость плитки и выдавать:
-        //
-        // Количество требуемых плиток, как целых, так и тех которые надо будет резать.
-        // Учтите, что плитку можно класть как вдоль, так и поперёк и только на месте мастер узнает,
-        // как именно её надо класть.
-        // Стоимость материала
-        // Стоимость рабочего времени
-        //  Итоговую ориентировочную стоимость
-
-        //1.find cost of work hours (27e per hur)
+        //1.find cost of work hours (27e per hour)
         //2.find cost of materials, cost per tile is my
         //3.find amount of tile vertically depends on floor/wall (full and cut) meters to cm
         //4.find amount of tile horizontally depends on floor/wall (full and cut) meters to cm
