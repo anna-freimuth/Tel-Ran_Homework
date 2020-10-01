@@ -6,7 +6,7 @@ public class HW18 {
         calculateTilingCosts(2, 3, 3);
     }
 
-    private static void calculateTilingCosts(int width, int length, double singleTileCost) {
+    private static void calculateTilingCosts(int length, int width, double singleTileCost) {
 
         //Нам известно, что в час он кладёт примерно один квадратный метр плитки.
         //Его час стоит 27€ без НДС.
@@ -20,12 +20,12 @@ public class HW18 {
         // Стоимость рабочего времени
         //  Итоговую ориентировочную стоимость
 
-        //1.find amount of tile vertically depends on floor/wall (full and cut) meters to cm
-        //2.find amount of tile horizontally depends on floor/wall (full and cut) meters to cm
-        //3.find cost of materials (horizontally and vertically) , cost per tile my
-        //4.find cost of hors work(27e per hur)
-        //5.Final cost (with vat or without?)
-        long fullTiles = findAmountOfFullTiles(length * 100, width * 100);
+        //1.find cost of work hours (27e per hur)
+        //2.find cost of materials, cost per tile is my
+        //3.find amount of tile vertically depends on floor/wall (full and cut) meters to cm
+        //4.find amount of tile horizontally depends on floor/wall (full and cut) meters to cm
+        //5.Final cost
+        long fullTiles = findAmountOfTiles(length * 100, width * 100); // change from m to cm
         double costFullAmountOfHours = findServiceCostForFullAmountOfHours(length, width);
         double costForMaterials = findCostOfMaterials(singleTileCost, fullTiles);
         double finalCost = costFullAmountOfHours + costForMaterials;
@@ -45,11 +45,20 @@ public class HW18 {
         return pricePerTile * fullTiles;
     }
 
-    private static long findAmountOfFullTiles(long length, long width) {
+    private static long findAmountOfTiles(long length, long width) {
         long tileLength = 30;
         long tileWidth = 20;
         long lengthResult = length / tileLength;
         long widthResult = width / tileWidth;
-        return lengthResult * widthResult;
+        long fullTiles = lengthResult * widthResult;
+        System.out.println("Amount of full tiles: " + fullTiles);
+
+        long lengthResultCut = length % tileLength;
+        long widthResultCut = width % tileWidth;
+        long cutTiles = lengthResultCut + widthResultCut;
+
+        System.out.println("Amount of cut tiles: " + cutTiles);
+
+        return fullTiles + cutTiles;
     }
 }
