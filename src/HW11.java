@@ -21,10 +21,19 @@ public class HW11 {
         else if (number % 3 == 0 || number % 5 == 0) return true;
         else return false;
     }
+    // private static boolean old35(int number) { //Task 14
+    //return number % 5==0 ^ number % 3 ==0;
+    //}
+
+//    private static boolean in1To10(int n, boolean outsideMode) { // Task 13.
+//        if (n <= 1 && outsideMode == true|| n >= 10 && outsideMode == true) return true;
+//        if (n >= 1 && n <= 10 && outsideMode == false ) return true;
+//        else return false;
+//    }
 
     private static boolean in1To10(int n, boolean outsideMode) { // Task 13.
-        if (n <= 1 && outsideMode == true|| n >= 10 && outsideMode == true) return true;
-        if (n >= 1 && n <= 10 && outsideMode == false ) return true;
+        if (n <= 1 && outsideMode || n >= 10 && outsideMode) return true;
+        if (n >= 1 && n <= 10 ) return true;
         else return false;
     }
 
