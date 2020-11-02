@@ -3,22 +3,18 @@ package HW01modul2;
 public class ArraysForPrimitiveDataTypes {
 
     public static void main(String[] args) {
-//Create methods for arrays[] with primitive dataTypes:
-//int, double, byte, char, long
-//print, create, add element, delete element, update element
-//use overloading
         int[] intArray = createRandomIntArray(3);
         printArray(intArray);
-        intArray = addElementArray(2,intArray);
+        intArray = addElementArray(2, intArray);
         printArray(intArray);
         intArray = deleteElementArray(intArray);
         printArray(intArray);
         intArray = updateElementArray(intArray, 2, 6);
         printArray(intArray);
 
-        double[] doubleArray = createRandomdoubleArray(3);
+        double[] doubleArray = createRandomDoubleArray(3);
         printArray(doubleArray);
-        doubleArray = addElementArray(2,doubleArray);
+        doubleArray = addElementArray(2, doubleArray);
         printArray(doubleArray);
         doubleArray = deleteElementArray(doubleArray);
         printArray(doubleArray);
@@ -32,15 +28,15 @@ public class ArraysForPrimitiveDataTypes {
     }
 
     private static int[] deleteElementArray(int[] intArray) {
-        int[] newIntArray = new int[intArray.length-1];
+        int[] newIntArray = new int[intArray.length - 1];
         for (int i = 0; i < newIntArray.length; i++) {
             newIntArray[i] = intArray[i];
         }
         return newIntArray;
     }
 
-    public static int[] addElementArray(int newElement, int[] intArray){
-        int[] newIntArray = new int[intArray.length+1];
+    public static int[] addElementArray(int newElement, int[] intArray) {
+        int[] newIntArray = new int[intArray.length + 1];
         for (int i = 0; i < intArray.length; i++) {
             newIntArray[i] = intArray[i];
         }
@@ -72,37 +68,37 @@ public class ArraysForPrimitiveDataTypes {
     }
 
     private static double[] deleteElementArray(double[] doubleArray) {
-        double[] newdoubleArray = new double[doubleArray.length-1];
-        for (int i = 0; i < newdoubleArray.length; i++) {
-            newdoubleArray[i] = doubleArray[i];
+        double[] newDoubleArray = new double[doubleArray.length - 1];
+        for (int i = 0; i < newDoubleArray.length; i++) {
+            newDoubleArray[i] = doubleArray[i];
         }
-        return newdoubleArray;
+        return newDoubleArray;
     }
 
-    public static double[] addElementArray(double newElement, double[] doubleArray){
-        double[] newdoubleArray = new double[doubleArray.length+1];
+    public static double[] addElementArray(double newElement, double[] doubleArray) {
+        double[] newDoubleArray = new double[doubleArray.length + 1];
         for (int i = 0; i < doubleArray.length; i++) {
-            newdoubleArray[i] = doubleArray[i];
+            newDoubleArray[i] = doubleArray[i];
         }
-        newdoubleArray[newdoubleArray.length - 1] = newElement;
-        return newdoubleArray;
+        newDoubleArray[newDoubleArray.length - 1] = newElement;
+        return newDoubleArray;
     }
 
-    public static double[] createRandomdoubleArray(int size) {
+    public static double[] createRandomDoubleArray(int size) {
 
-        double[] newdoubleArray = new double[size];
+        double[] newDoubleArray = new double[size];
         for (int i = 0; i < size; i++) {
-            newdoubleArray[i] = (double) (Math.random() * 1000);
+            newDoubleArray[i] = (double) (Math.random() * 1000);
         }
-        return newdoubleArray;
+        return newDoubleArray;
     }
 
-    public static void printArray(double[] arrayFordouble) {
+    public static void printArray(double[] arrayForDouble) {
         System.out.print("double array:  [");
-        for (int i = 0; i < arrayFordouble.length - 1; i++) {
-            System.out.print(arrayFordouble[i] + ", ");
+        for (int i = 0; i < arrayForDouble.length - 1; i++) {
+            System.out.print(arrayForDouble[i] + ", ");
         }
-        System.out.print(arrayFordouble[arrayFordouble.length - 1] + "]");
+        System.out.print(arrayForDouble[arrayForDouble.length - 1] + "]");
         System.out.println();
     }
 }
