@@ -192,7 +192,8 @@ public class Book {
     }
 
 
-    void percentageBookRead(int pagesRead) {
+    void percentageBookRead() {
+        int pagesRead = this.bookmark;
         int percentagePages;
         if (pagesRead == pages) {
             System.out.println("You have finished the book completely 100%");
@@ -222,7 +223,7 @@ class BookTest {
 
         for (Book book : allBooks) {
             book.displayInfo();
-            book.percentageBookRead(book.getBookmark());
+            book.percentageBookRead();
         }
     }
 }
