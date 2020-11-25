@@ -3,7 +3,7 @@ package HW003;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ArrayIntegerListTest {
 
@@ -25,9 +25,14 @@ class ArrayIntegerListTest {
     @Test
     public void testSet() {
         ArrayIntegerList testList = new ArrayIntegerList();
+        assertThrows(IndexOutOfBoundsException.class, () -> testList.set(0, 5)); // for empty list
+
         testList.addLast(3);
         testList.addLast(5);
         testList.addLast(6);
+
+        assertThrows(IndexOutOfBoundsException.class, () -> testList.set(3, 5)); //beyond upper limit
+        assertThrows(IndexOutOfBoundsException.class, () -> testList.set(-1, 5)); //beyond lower limit
 
         assertEquals(3, testList.get(0));
         testList.set(0, 1);
@@ -41,16 +46,36 @@ class ArrayIntegerListTest {
     }
 
     @Test
-    public void testRemoveById() {
+    public void testGet() {
         ArrayIntegerList testList = new ArrayIntegerList();
+        assertThrows(IndexOutOfBoundsException.class, () -> testList.get(0)); // the list is empty, cannot get anything out of it
+
         testList.addLast(3);
         testList.addLast(5);
         testList.addLast(6);
 
+        assertEquals(3, testList.get(0));
+        assertEquals(6, testList.get(2));
+        assertThrows(IndexOutOfBoundsException.class, () -> testList.get(-1));// one below the min index
+        assertThrows(IndexOutOfBoundsException.class, () -> testList.get(testList.size()));// one above the max index
+    }
+
+    @Test
+    public void testRemoveById() {
+        ArrayIntegerList testList = new ArrayIntegerList();
+        assertThrows(IndexOutOfBoundsException.class, () -> testList.removeById(1));
+
+        testList.addLast(3);
+        testList.addLast(5);
+        testList.addLast(6);
+
+        assertThrows(IndexOutOfBoundsException.class, () -> testList.removeById(-1));
+        assertThrows(IndexOutOfBoundsException.class, () -> testList.removeById(3));
+
 
         assertEquals(3, testList.size());
-        int testValue = testList.removeById(1);
-        assertEquals(5, testValue);
+        int testValue1 = testList.removeById(1);
+        assertEquals(5, testValue1);
         assertEquals(2, testList.size());//the list size after remove
     }
 
@@ -76,6 +101,14 @@ class ArrayIntegerListTest {
         testList.clear();
         assertEquals(0, testList.size());
 
+    }
+
+    @Test
+    public void testIncreaseCapacity() {
+        ArrayIntegerList testList = new ArrayIntegerList();
+        for (int i = 0; i < 17; i++) {
+            assertDoesNotThrow(() -> testList.addLast(0));
+        }
 
     }
 
