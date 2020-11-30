@@ -66,9 +66,9 @@ public class LoanIssuerTest {
     }
 
     @Test
-    public void loanIssue_clientIs50WithEnoughIncome_varyingResults() {
+    public void loanIssue_clientIs50WithEnoughIncome_getsLoan() {
         for (LoanIssuer issuer : loanIssuers) {
-            assertFalse(issuer.toIssue(client7));
+            assertTrue(issuer.toIssue(client7));
         }
     }
 }
