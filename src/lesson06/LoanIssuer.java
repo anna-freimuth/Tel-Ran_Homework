@@ -12,11 +12,16 @@ public class LoanIssuer {
     }
 
     public boolean toIssue(LoanConsumer loanConsumer) {
-        if (loanConsumer.getAge() < 18 || loanConsumer.getAnnualIncome() < 20000) return false;
-        if (isLazy && loanConsumer.getAge() >= 18 && loanConsumer.getAnnualIncome() >= 20000) return true;
-        if (!isLazy && isKind && loanConsumer.getAnnualIncome() >= 20000 && loanConsumer.getAge() <= 70) return true;
-        if (!isLazy && !isKind && loanConsumer.getAnnualIncome() >= 20000 && loanConsumer.getAge() <= 50) return true;
-        return false;
+        if (loanConsumer.getAge() < 18 || loanConsumer.getAnnualIncome() < 20000)
+            return false;
+
+        if (isLazy)
+            return true;
+
+        if (loanConsumer.getAge() <= 50)
+            return true;
+
+        return isKind && loanConsumer.getAge() <= 70;
     }
 
     public String getName() {
