@@ -5,9 +5,5 @@ abstract class Shape {
         this.symbol = symbol;
     }
 
-    public char getSymbol() {
-        return symbol;
-    }
-
     abstract public void draw();
 }
