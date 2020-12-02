@@ -1,4 +1,4 @@
-public class main {
+public class Main {
     public static void main(String[] args) {
         Shape shapes[] = new Shape[]{
                 new Line('#', 10),
