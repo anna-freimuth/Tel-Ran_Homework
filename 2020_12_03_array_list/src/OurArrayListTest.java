@@ -198,9 +198,32 @@ class OurArrayListTest {
         assertEquals("-15", list.get(2));
     }
 
+    @Test
+    public void testRemoveObjectFromTheList() {
+        addElementsToList(5);
+
+        assertEquals(5, list.size());
+        assertEquals("string1", list.get(1));
+
+        list.remove("string1");
+
+        assertEquals(4, list.size());
+        assertEquals("string2", list.get(1));
+    }
+
+    @Test
+    public void containsObjectInTheList() {
+        addElementsToList(3);
+
+        assertTrue(list.contains("string0"));
+        assertFalse(list.contains(null));
+        assertFalse(list.contains("This string is not in the list"));
+    }
+
     private void addElementsToList(int number) {
         for (int j = 0; j < number; j++) {
             list.addLast("string" + j);
         }
     }
+
 }
