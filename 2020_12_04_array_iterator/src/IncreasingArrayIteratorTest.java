@@ -1,15 +1,13 @@
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Type;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+
 
 public class IncreasingArrayIteratorTest {
-    Integer[] array = {10, -8, 0, 15};
-    IncreasingArrayIterator<Integer> iterator = new IncreasingArrayIterator<Integer>(array);
+    int[] array = {10, -8, 0, 15};
+    Iterator<Integer> iterator = new IncreasingArrayIterator(array);
 
     @Test
     public void increasingArrayIterator() {

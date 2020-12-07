@@ -1,10 +1,10 @@
 import java.util.Iterator;
 
-public class BackwardsArrayIterator<Type> implements Iterator<Type> {
-    private final Type[] arrayToIterate;
+public class BackwardsArrayIterator implements Iterator<Integer> {
+    private final int[] arrayToIterate;
     private int currentIndex;
 
-    BackwardsArrayIterator(Type[] arrayToIterate) {
+    BackwardsArrayIterator(int[] arrayToIterate) {
         this.arrayToIterate = arrayToIterate;
         this.currentIndex = arrayToIterate.length - 1;
     }
@@ -14,7 +14,7 @@ public class BackwardsArrayIterator<Type> implements Iterator<Type> {
         return currentIndex >= 0;
     }
 
-    public Type next() {
+    public Integer next() {
         return arrayToIterate[currentIndex--];
     }
 }

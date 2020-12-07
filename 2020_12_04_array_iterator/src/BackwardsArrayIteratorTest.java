@@ -1,12 +1,16 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.Iterator;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BackwardsArrayIteratorTest {
-    BackwardsArrayIterator<Integer> iterator = new BackwardsArrayIterator<Integer>(new Integer[]{10, -8, 0, 15});
+    int[] array = {10, -8, 0, 15};
+    Iterator<Integer> iterator = new BackwardsArrayIterator(array);
 
     @Test
     public void backwardsArrayIterator() {
+
         assertEquals(15, iterator.next());
         assertEquals(0, iterator.next());
     }

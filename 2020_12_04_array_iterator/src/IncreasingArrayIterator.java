@@ -1,26 +1,22 @@
-import java.lang.reflect.Type;
+
 import java.util.Arrays;
 import java.util.Iterator;
 
-public class IncreasingArrayIterator<Type> implements Iterator<Type> {
-    private final Type[] arrayToIterate;
-    private int currentIndex = 0;
+public class IncreasingArrayIterator implements Iterator<Integer> {
+    private final int[] arrayToIterate;
+    private int currentIndex;
 
-    IncreasingArrayIterator(Type[] arrayToIterate) {
+    IncreasingArrayIterator(int[] arrayToIterate) {
 
-        // Why is the next line not allowed?
-        // Type[] copiedArray = new Type[arrayToIterate.length];
-        Type[] copiedArray = Arrays.copyOf(arrayToIterate, arrayToIterate.length);
-        System.arraycopy(arrayToIterate, 0, copiedArray, 0, arrayToIterate.length);
-        Arrays.sort(copiedArray);
-        this.arrayToIterate = copiedArray;
+        this.arrayToIterate = Arrays.copyOf(arrayToIterate, arrayToIterate.length);
+        Arrays.sort(this.arrayToIterate);
     }
 
     public boolean hasNext() {
         return currentIndex < arrayToIterate.length;
     }
 
-    public Type next() {
+    public Integer next() {
         return arrayToIterate[currentIndex++];
     }
 }
