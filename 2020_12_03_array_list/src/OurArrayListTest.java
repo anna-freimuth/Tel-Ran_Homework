@@ -1,8 +1,11 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.Iterator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class OurArrayListTest {
+
     OurArrayList<String> list = new OurArrayList<>();
 
     @Test
@@ -132,7 +135,7 @@ class OurArrayListTest {
         }
 
         assertEquals(17, list.size());
-        assertEquals(32, list.source.length);
+
     }
 
     @Test
@@ -226,4 +229,111 @@ class OurArrayListTest {
         }
     }
 
+    @Test
+    public void testForwardIterator_emptyList() {
+        OurList<String> strings = new OurArrayList<>();
+        Iterator<String> iterator = strings.forwardIterator();
+
+        assertFalse(iterator.hasNext());
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            iterator.next();
+        });
+    }
+
+    @Test
+    public void testForwardIterator_oneElement() {
+        String[] expected = {"Kira"};
+
+        OurList<String> strings = new OurArrayList<>();
+        strings.addLast("Kira");
+
+        Iterator<String> iterator = strings.forwardIterator();
+
+        int i = 0;
+        while (iterator.hasNext()) {
+            assertEquals(expected[i++], iterator.next());
+        }
+
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            iterator.next();
+        });
+    }
+
+    @Test
+    public void testForwardIterator_severalElements() {
+        String[] expected = {"Kira", "Mira", "Arnold", "Mark"};
+
+        OurList<String> strings = new OurArrayList<>();
+        strings.addLast("Kira");
+        strings.addLast("Mira");
+        strings.addLast("Arnold");
+        strings.addLast("Mark");
+
+        Iterator<String> iterator = strings.forwardIterator();
+
+        int i = 0;
+        while (iterator.hasNext()) {
+            assertEquals(expected[i++], iterator.next());
+        }
+
+        assertEquals(4, i);
+
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            iterator.next();
+        });
+    }
+
+    @Test
+    public void testBackwardIterator_emptyList() {
+        OurList<String> strings = new OurArrayList<>();
+        Iterator<String> iterator = strings.backwardIterator();
+
+        assertFalse(iterator.hasNext());
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            iterator.next();
+        });
+    }
+
+    @Test
+    public void testBackwardIterator_oneElement() {
+        String[] expected = {"Kira"};
+
+        OurList<String> strings = new OurArrayList<>();
+        strings.addLast("Kira");
+
+        Iterator<String> iterator = strings.backwardIterator();
+
+        int i = 0;
+        while (iterator.hasNext()) {
+            assertEquals(expected[i++], iterator.next());
+        }
+
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            iterator.next();
+        });
+    }
+
+    @Test
+    public void testBackwardIterator_severalElements() {
+        String[] expected = {"Mira", "Mark", "5", "Arnold"};
+
+        OurList<String> strings = new OurArrayList<>();
+        strings.addLast("Arnold");
+        strings.addLast("5");
+        strings.addLast("Mark");
+        strings.addLast("Mira");
+
+        Iterator<String> iterator = strings.backwardIterator();
+
+        int i = 0;
+        while (iterator.hasNext()) {
+            assertEquals(expected[i++], iterator.next());
+        }
+
+        assertEquals(4, i);
+
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            iterator.next();
+        });
+    }
 }
