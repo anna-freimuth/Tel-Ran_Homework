@@ -19,7 +19,7 @@ public class OurArrayList<Type> implements OurList<Type> {
         size++;
     }
 
-    void increaseCapacity() {                //O(n)
+    void increaseCapacity() {                //O(n), where n is size
         int newCapacity = source.length * 2;
         Object[] newSource = new Object[newCapacity];
         System.arraycopy(source, 0, newSource, 0, source.length);
@@ -35,7 +35,7 @@ public class OurArrayList<Type> implements OurList<Type> {
     }
 
     @Override
-    public void set(int index, Type value) {        //O(1)
+    public void set(int index, Type value) {     //O(1)
         if (index >= size || index < 0)
             throw new IndexOutOfBoundsException();
 
@@ -43,7 +43,7 @@ public class OurArrayList<Type> implements OurList<Type> {
     }
 
     @Override
-    public Type removeById(int index) {  // O(n)
+    public Type removeById(int index) {  // O(n), where n is size
         if (index >= size || index < 0)
             throw new IndexOutOfBoundsException();
 
@@ -77,7 +77,7 @@ public class OurArrayList<Type> implements OurList<Type> {
     }
 
     @Override
-    public boolean contains(Type obj) {                         // 0(n)
+    public boolean contains(Type obj) {// 0(n)
         for (int i = 0; i < size; i++) {
             if (source[i].equals(obj))
                 return true;
@@ -86,9 +86,13 @@ public class OurArrayList<Type> implements OurList<Type> {
     }
 
     @Override
-    public Iterator<Type> forwardIterator() {                   // 0(1)
+    public Iterator<Type> forwardIterator() {                   // O(n) is the complexity of using the iterator
         Iterator<Type> iterator = new ForwardIterator();
         return iterator;
+    }
+    @Override
+    public Iterator<Type> iterator() {
+        return forwardIterator();
     }
 
     @Override
