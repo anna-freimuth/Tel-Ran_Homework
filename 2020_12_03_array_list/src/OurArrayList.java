@@ -77,9 +77,17 @@ public class OurArrayList<Type> implements OurList<Type> {
     }
 
     @Override
-    public boolean contains(Type obj) {// 0(n)
+    public boolean contains(Type obj) {   // 0(n)
+        if (obj == null) {
+            for (int i = 0; i < size; i++) {
+                if (source[i] == null)
+                    return true;
+            }
+            return false;
+        }
+
         for (int i = 0; i < size; i++) {
-            if (source[i].equals(obj))
+            if (obj.equals(source[i]))
                 return true;
         }
         return false;
