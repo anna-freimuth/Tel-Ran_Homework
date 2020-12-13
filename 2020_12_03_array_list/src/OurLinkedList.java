@@ -65,13 +65,12 @@ public class OurLinkedList<T> implements OurList<T> {
 
     @Override
     public boolean remove(T obj) {
+        Node<T> node = findNode(obj);
 
-        int index = findIndex(obj);
-
-        if (index == -1)
+        if (node == null)
             return false;
 
-        removeById(index);
+        deleteNode(node);
         return true;
     }
 
@@ -127,6 +126,24 @@ public class OurLinkedList<T> implements OurList<T> {
         } while(node != null);
 
         return -1;
+    }
+    private Node<T> findNode(T needle) {
+
+        if (size == 0)
+            return null;
+
+
+        Node<T> node = this.first;
+
+        do {
+            if (node.element.equals(needle))
+                return node;
+            else{
+                node = node.next;
+            }
+        } while(node != null);
+
+        return null;
     }
 
     private static class Node<T> {
