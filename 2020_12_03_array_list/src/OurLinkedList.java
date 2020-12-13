@@ -76,8 +76,19 @@ public class OurLinkedList<T> implements OurList<T> {
 
     @Override
     public boolean contains(T obj) {
+        if (size == 0)
+            return false;
 
-        return findIndex(obj) != -1;
+
+        Node<T> node = this.first;
+
+        do {
+            if (node.element.equals(obj))
+                return true;
+            node = node.next;
+        } while (node != null);
+
+        return false;
     }
 
     @Override
@@ -110,23 +121,7 @@ public class OurLinkedList<T> implements OurList<T> {
         size--;
     }
 
-    private int findIndex(T obj) {
 
-        if (size == 0)
-            return -1;
-
-        int index = 0;
-        Node<T> node = this.first;
-
-        do {
-            if (node.element.equals(obj))
-                return index;
-            node = node.next;
-            index++;
-        } while(node != null);
-
-        return -1;
-    }
     private Node<T> findNode(T needle) {
 
         if (size == 0)
@@ -138,10 +133,10 @@ public class OurLinkedList<T> implements OurList<T> {
         do {
             if (node.element.equals(needle))
                 return node;
-            else{
+            else {
                 node = node.next;
             }
-        } while(node != null);
+        } while (node != null);
 
         return null;
     }
