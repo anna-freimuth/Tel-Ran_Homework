@@ -66,9 +66,21 @@ public class OurArrayList<Type> implements OurList<Type> {
     }
 
     @Override
-    public boolean remove(Type obj) {                       // 0(n)
-        for (int i = 0; i < source.length; i++) {
-            if (source[i].equals(obj)) {
+    // O(n) - to find the needle. And O(n) - to remove it by its index
+    // total number of operations is O(n)
+    public boolean remove(Type obj) {
+        if (obj == null) {
+            for (int i = 0; i < size; i++) {
+                if (source[i] == null) {
+                    removeById(i);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        for (int i = 0; i < size; i++) {
+            if (obj.equals(source[i])) {
                 removeById(i);
                 return true;
             }
@@ -98,6 +110,7 @@ public class OurArrayList<Type> implements OurList<Type> {
         Iterator<Type> iterator = new ForwardIterator();
         return iterator;
     }
+
     @Override
     public Iterator<Type> iterator() {
         return forwardIterator();

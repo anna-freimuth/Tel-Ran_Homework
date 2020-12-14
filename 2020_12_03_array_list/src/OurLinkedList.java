@@ -8,6 +8,7 @@ public class OurLinkedList<T> implements OurList<T> {
 
     @Override
     public void addLast(T element) {
+
         Node<T> node = new Node<>(null, last, element);
         //Node<T> node = new Node<>(null, null, element);
         if (size == 0) {
@@ -93,18 +94,67 @@ public class OurLinkedList<T> implements OurList<T> {
 
     @Override
     public Iterator<T> forwardIterator() {
-        return null;
+        Iterator<T> iterator = new ForwardIterator();
+        return iterator;
     }
 
     @Override
     public Iterator<T> backwardIterator() {
-        return null;
+        Iterator<T> iterator = new BackwardIterator();
+        return iterator;
     }
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return forwardIterator();
     }
+
+
+    private class ForwardIterator implements Iterator<T> {
+
+        Node<T> currentNode = first;
+
+
+        @Override
+        public boolean hasNext() {
+            return currentNode != null;
+        }
+
+        @Override
+        public T next() {
+            if (currentNode == null)
+                throw new IndexOutOfBoundsException();
+
+            T res = currentNode.element;
+
+            currentNode = currentNode.next;
+            return res;
+        }
+    }
+
+
+    private class BackwardIterator implements Iterator<T> {
+
+        Node<T> currentNode = last;
+
+        @Override
+        public boolean hasNext() {
+            return currentNode != null;
+        }
+
+        @Override
+        public T next() {
+            if (currentNode == null)
+                throw new IndexOutOfBoundsException();
+
+            T res = currentNode.element;
+
+            currentNode = currentNode.prev;
+            return res;
+        }
+
+    }
+
 
     private void deleteNode(Node<T> needle) {
 
@@ -127,16 +177,25 @@ public class OurLinkedList<T> implements OurList<T> {
         if (size == 0)
             return null;
 
-
         Node<T> node = this.first;
 
-        do {
-            if (node.element.equals(needle))
-                return node;
-            else {
-                node = node.next;
-            }
-        } while (node != null);
+        if (needle != null) {
+            do {
+                if (node.element.equals(needle))
+                    return node;
+                else {
+                    node = node.next;
+                }
+            } while (node != null);
+        } else {
+            do {
+                if (node.element == null)
+                    return node;
+                else {
+                    node = node.next;
+                }
+            } while (node != null);
+        }
 
         return null;
     }
