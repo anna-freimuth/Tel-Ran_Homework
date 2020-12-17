@@ -14,13 +14,12 @@ public class Solution {
         Map<Integer, Integer> occurrenceByNumber = new HashMap<>();
 
         for (Integer number : numbers) {
-            occurrenceByNumber.compute(number, (key, oldValue) -> oldValue == null ? 1 : oldValue + 1);
-          /*  Integer value = occurrenceByNumber.get(number);
+            Integer value = occurrenceByNumber.get(number);
             if (value == null) {
                 occurrenceByNumber.put(number, 1);
             } else {
                 occurrenceByNumber.put(number, value + 1);
-            }*/
+            }
         }
         int maxValue = 0;
         int res = 0;
