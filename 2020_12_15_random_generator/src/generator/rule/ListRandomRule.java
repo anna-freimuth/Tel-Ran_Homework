@@ -2,6 +2,7 @@ package generator.rule;
 
 import generator.RandomRule;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -13,7 +14,7 @@ public class ListRandomRule implements RandomRule {
 
     public ListRandomRule(int[] numbers) {
 
-        this.values = numbers;
+        this.values = Arrays.copyOf(numbers, numbers.length);
     }
 
     public ListRandomRule(List<Integer> list) {
