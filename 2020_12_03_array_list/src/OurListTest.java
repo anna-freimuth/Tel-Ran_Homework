@@ -9,7 +9,8 @@ public abstract class OurListTest {
     OurList<String> list;
     OurList<String> stringList;
     OurList<Integer> integerOurList;
-    Comparator<Integer>comparator = Comparator.comparingInt(x -> x);
+
+    Comparator<Integer> integerComparator = new IntegerBasicComparator();
 
 
     @Test
@@ -430,7 +431,7 @@ public abstract class OurListTest {
         integerOurList.addLast(15);
 
 
-        integerOurList.sort(comparator);
+        integerOurList.sort(integerComparator);
         assertEquals(28,integerOurList.get(3));
     }
 
