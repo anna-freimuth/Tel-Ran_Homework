@@ -119,7 +119,7 @@ public class OurLinkedList<T> implements OurList<T> {
                 continue;
             }
 
-            int temp = (int) copy[j];
+            T temp = (T) copy[j];
             copy[j] = copy[j + 1];
             copy[j + 1] = temp;
             j = -1;

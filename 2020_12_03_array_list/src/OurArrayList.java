@@ -136,7 +136,7 @@ public class OurArrayList<Type> implements OurList<Type> {
             if (comparator.compare((Type) copy[j], (Type) copy[j + 1]) <= 0) {
                 continue;
             }
-            int temp = (int) copy[j];
+            Type temp = (Type) copy[j];
             copy[j] = copy[j + 1];
             copy[j + 1] = temp;
             j = -1;
