@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.Comparator;
 import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,6 +8,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public abstract class OurListTest {
     OurList<String> list;
     OurList<String> stringList;
+    OurList<Integer> integerOurList;
+    Comparator<Integer>comparator = Comparator.comparingInt(x -> x);
 
 
     @Test
@@ -396,6 +399,7 @@ public abstract class OurListTest {
         });
     }
 
+
     @Test
     public void testBackwardIterator_severalElements() {
         String[] expected = {"Mira", "Mark", "5", "Arnold"};
@@ -418,4 +422,16 @@ public abstract class OurListTest {
             iterator.next();
         });
     }
+    @Test
+    public void sort(){
+        integerOurList.addLast(6);
+        integerOurList.addLast(28);
+        integerOurList.addLast(9);
+        integerOurList.addLast(15);
+
+
+        integerOurList.sort(comparator);
+        assertEquals(28,integerOurList.get(3));
+    }
+
 }

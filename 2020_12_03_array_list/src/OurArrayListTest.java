@@ -10,6 +10,7 @@ class OurArrayListTest extends OurListTest {
     public void init() {
         list = new OurArrayList<>();
         stringList = new OurArrayList<>();
+        integerOurList = new OurLinkedList<>();
     }
 
     @Test

@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.Iterator;
 
 public class OurArrayList<Type> implements OurList<Type> {
@@ -120,6 +121,30 @@ public class OurArrayList<Type> implements OurList<Type> {
     public Iterator<Type> backwardIterator() {                 // 0(1)
         Iterator<Type> iterator = new BackwardIterator<>((Type[]) source, size);
         return iterator;
+    }
+
+    @Override
+    public void sort(Comparator<Type> comparator) {
+        Object[] copy = new Object[size];
+
+        int i = 0;
+        for (Type element : this) {
+            copy[i++] = element;
+        }
+
+        for (int j = 0; j < copy.length - 1; j++) {
+            if (comparator.compare((Type) copy[j], (Type) copy[j + 1]) <= 0) {
+                continue;
+            }
+            int temp = (int) copy[j];
+            copy[j] = copy[j + 1];
+            copy[j + 1] = temp;
+            j = -1;
+        }
+        this.clear();
+        for (Object element : copy) {
+            this.addLast((Type) element);
+        }
     }
 
     private class ForwardIterator implements Iterator<Type> {

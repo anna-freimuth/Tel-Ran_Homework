@@ -1,3 +1,5 @@
+
+import java.util.Comparator;
 import java.util.Iterator;
 
 public class OurLinkedList<T> implements OurList<T> {
@@ -102,6 +104,31 @@ public class OurLinkedList<T> implements OurList<T> {
     public Iterator<T> backwardIterator() {
         Iterator<T> iterator = new BackwardIterator();
         return iterator;
+    }
+
+    @Override
+    public void sort(Comparator<T> comparator) {
+        Object[] copy = new Object[size];
+
+        int i = 0;
+        for (T element : this) {
+            copy[i++] = element;
+        }
+        for (int j = 0; j < copy.length - 1; j++) {
+            if (comparator.compare((T) copy[j], (T) copy[j + 1]) <= 0) {
+                continue;
+            }
+
+            int temp = (int) copy[j];
+            copy[j] = copy[j + 1];
+            copy[j + 1] = temp;
+            j = -1;
+        }
+
+        this.clear();
+        for (Object element : copy) {
+            this.addLast((T) element);
+        }
     }
 
     @Override
