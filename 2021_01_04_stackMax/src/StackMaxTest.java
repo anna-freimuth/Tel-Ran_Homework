@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class StackMaxTest {
 
-    StackMax list = new StackMax();
+    StackMax list = new StackMax(new IntegerBasicComparator());
 
     @Test
     void addLast() {

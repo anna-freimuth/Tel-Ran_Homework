@@ -1,11 +1,14 @@
 import org.junit.jupiter.api.Test;
 
 
+import java.util.Iterator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
 class OurFixedArrayDequeTest {
     OurFixedArrayDeque<Integer> listDeque = new OurFixedArrayDeque<>(10);
+
 
     private void addElementsToList(int capacity) {
         for (int j = 0; j < capacity; j++) {
@@ -113,6 +116,41 @@ class OurFixedArrayDequeTest {
         assertEquals(8, listDeque.size());
     }
 
+
+    @Test
+    public void testBackwardIterator(){
+
+        int[] array = {10, -8, 0, 15};
+        OurFixedArrayDeque<Integer> secondList = new OurFixedArrayDeque<>(10);
+        for (int num : array) {
+            listDeque.addLast(num);
+            secondList.addLast(num);
+        }
+
+        Iterator<Integer> iterator = listDeque.backwardIterator();
+
+        while (iterator.hasNext()) {
+            assertEquals(secondList.removeLast(), iterator.next());
+        }
+    }
+
+    @Test
+    public void testIterable() {
+
+        int[] array = {10, -8, 0, 15};
+        OurFixedArrayDeque<Integer> secondList = new OurFixedArrayDeque<>(10);
+        for (int num : array) {
+           listDeque.addLast(num);
+           secondList.addLast(num);
+        }
+
+        for (int currentIntegerToCheck: listDeque) {
+            assertEquals(secondList.removeFirst(), currentIntegerToCheck);
+        }
+    }
+
+
+
     @Test
     void getMax() {
         listDeque.addFirst(-22);
@@ -122,3 +160,4 @@ class OurFixedArrayDequeTest {
         assertEquals(-3, listDeque.getMax());
     }
 }
+
