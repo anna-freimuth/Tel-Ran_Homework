@@ -435,4 +435,39 @@ public abstract class OurListTest {
         assertEquals(28,integerOurList.get(3));
     }
 
+    @Test
+    public void getMax() {
+        integerOurList.addLast(6);
+        integerOurList.addLast(30);
+        integerOurList.addLast(9);
+        integerOurList.addLast(15);
+
+        assertEquals(30,integerOurList.getMax(integerComparator));
+    }
+    @Test
+    public void getMax_emptyList_throwsEmptyListException(){
+        assertThrows(EmptyListException.class, () -> {
+            integerOurList.getMax(integerComparator);
+        });
+    }
+
+
+    @Test
+    public void getMin() {
+        integerOurList.addLast(6);
+        integerOurList.addLast(30);
+        integerOurList.addLast(9);
+        integerOurList.addLast(15);
+
+        assertEquals(6,integerOurList.getMin(integerComparator));
+    }
+
+    @Test
+    public void getMin_emptyList_throwsEmptyListException(){
+        assertThrows(EmptyListException.class, () -> {
+            integerOurList.getMin(integerComparator);
+        });
+    }
+
 }
+

@@ -190,4 +190,33 @@ public class OurArrayList<Type> implements OurList<Type> {
             return res;
         }
     }
+
+    public Type getMax(Comparator<Type> comparator) {
+        if (size == 0)
+            throw new EmptyListException();
+
+        Type max = (Type) source[0];
+        for (int i = 1; i < size; i++) {
+            Type temp = (Type) source[i];
+            if (comparator.compare(temp, max) > 0)
+                max = temp;
+
+        }
+        return max;
+    }
+
+    @Override
+    public Type getMin(Comparator<Type> comparator) {
+
+        if (size == 0)
+            throw new EmptyListException();
+
+        Type min = (Type) source[0];
+        for (int i = 1; i < size; i++) {
+            Type temp = (Type) source[i];
+            if (comparator.compare(temp, min) < 0)
+                min = temp;
+        }
+        return min;
+    }
 }

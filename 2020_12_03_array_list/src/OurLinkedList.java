@@ -132,6 +132,42 @@ public class OurLinkedList<T> implements OurList<T> {
     }
 
     @Override
+    public T getMax(Comparator<T> comparator) {
+        if (size == 0)
+            throw new EmptyListException();
+
+        Iterator iterator = iterator();
+
+        T max = (T) iterator.next();
+        T temp;
+        while (iterator.hasNext()) {
+            temp = (T) iterator.next();
+            if (comparator.compare(temp, max) > 0)
+                max = temp;
+        }
+
+        return max;
+    }
+
+    @Override
+    public T getMin(Comparator<T> comparator) {
+        if (size == 0)
+            throw new EmptyListException();
+
+        Iterator iterator = iterator();
+
+        T min = (T) iterator.next();
+        T temp;
+        while (iterator.hasNext()) {
+            temp = (T) iterator.next();
+            if (comparator.compare(temp, min) < 0)
+                min = temp;
+        }
+
+        return min;
+    }
+
+    @Override
     public Iterator<T> iterator() {
         return forwardIterator();
     }

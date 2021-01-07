@@ -132,7 +132,7 @@ public class OurFixedArrayDeque<T> implements OurDeque<T> {
             if (currentIndex < 0)
                 throw new IndexOutOfBoundsException();
 
-            T res = (T)source[currentIndex];
+            T res = (T) source[currentIndex];
             currentIndex--;
             return res;
         }
