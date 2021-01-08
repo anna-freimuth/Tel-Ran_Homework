@@ -1,5 +1,6 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.Comparator;
 import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -7,6 +8,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public abstract class OurListTest {
     OurList<String> list;
     OurList<String> stringList;
+    OurList<Integer> integerOurList;
+
+    Comparator<Integer> integerComparator = new IntegerBasicComparator();
 
 
     @Test
@@ -396,6 +400,7 @@ public abstract class OurListTest {
         });
     }
 
+
     @Test
     public void testBackwardIterator_severalElements() {
         String[] expected = {"Mira", "Mark", "5", "Arnold"};
@@ -418,4 +423,51 @@ public abstract class OurListTest {
             iterator.next();
         });
     }
+    @Test
+    public void sort(){
+        integerOurList.addLast(6);
+        integerOurList.addLast(28);
+        integerOurList.addLast(9);
+        integerOurList.addLast(15);
+
+
+        integerOurList.sort(integerComparator);
+        assertEquals(28,integerOurList.get(3));
+    }
+
+    @Test
+    public void getMax() {
+        integerOurList.addLast(6);
+        integerOurList.addLast(30);
+        integerOurList.addLast(9);
+        integerOurList.addLast(15);
+
+        assertEquals(30,integerOurList.getMax(integerComparator));
+    }
+    @Test
+    public void getMax_emptyList_throwsEmptyListException(){
+        assertThrows(EmptyListException.class, () -> {
+            integerOurList.getMax(integerComparator);
+        });
+    }
+
+
+    @Test
+    public void getMin() {
+        integerOurList.addLast(6);
+        integerOurList.addLast(30);
+        integerOurList.addLast(9);
+        integerOurList.addLast(15);
+
+        assertEquals(6,integerOurList.getMin(integerComparator));
+    }
+
+    @Test
+    public void getMin_emptyList_throwsEmptyListException(){
+        assertThrows(EmptyListException.class, () -> {
+            integerOurList.getMin(integerComparator);
+        });
+    }
+
 }
+

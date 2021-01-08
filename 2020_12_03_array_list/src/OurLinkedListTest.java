@@ -6,6 +6,7 @@ class OurLinkedListTest extends OurListTest {
     public void init() {
         list = new OurLinkedList<>();
         stringList = new OurLinkedList<>();
+        integerOurList = new OurLinkedList<>();
     }
 
 }

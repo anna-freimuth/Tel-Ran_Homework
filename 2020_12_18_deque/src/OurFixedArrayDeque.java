@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 public class OurFixedArrayDeque<T> implements OurDeque<T> {
 
     private int firstEltId;
@@ -79,6 +81,63 @@ public class OurFixedArrayDeque<T> implements OurDeque<T> {
     public int size() {
         return size;
     }
+
+
+    @Override
+    public Iterator<T> forwardIterator() {
+        Iterator<T> iterator = new ForwardIterator();
+        return iterator;
+    }
+
+    @Override
+    public Iterator<T> backwardIterator() {
+        Iterator<T> iterator = new BackwardIterator();
+        return iterator;
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return forwardIterator();
+    }
+
+    public class ForwardIterator implements Iterator<T> {
+        int currentIndex = firstEltId;
+
+        @Override
+        public boolean hasNext() {
+            return currentIndex < size;
+        }
+
+        @Override
+        public T next() {
+            if (currentIndex >= size)
+                throw new IndexOutOfBoundsException();
+
+            T res = (T) source[currentIndex];
+            currentIndex++;
+            return res;
+        }
+    }
+
+    private class BackwardIterator implements Iterator<T> {
+        int currentIndex = (firstEltId + size - 1) % capacity;
+
+        @Override
+        public boolean hasNext() {
+            return currentIndex >= 0;
+        }
+
+        @Override
+        public T next() {
+            if (currentIndex < 0)
+                throw new IndexOutOfBoundsException();
+
+            T res = (T) source[currentIndex];
+            currentIndex--;
+            return res;
+        }
+    }
+
 
     public int getMax() {
         if (size == 0)
