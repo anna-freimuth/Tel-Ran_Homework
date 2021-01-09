@@ -1,4 +1,5 @@
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Iterator;
 
@@ -79,8 +80,8 @@ public interface OurList<Type> extends Iterable<Type> {
         int i = 0;
         for (Type element : this) {
             copy[i++] = element;
-        }
-
+        }//copy: {15, -8, 3}
+        //  Arrays.sort(copy, comparator);
         for (int j = 0; j < copy.length - 1; j++) {
             if (comparator.compare((Type) copy[j], (Type) copy[j + 1]) <= 0) {
                 continue;
@@ -90,11 +91,37 @@ public interface OurList<Type> extends Iterable<Type> {
             copy[j + 1] = temp;
             j = -1;
         }
+        // copy:{-8, 3, 15}
         this.clear();
         for (Object element : copy) {
             this.addLast((Type) element);
         }
     }
+
+    default void sort() {
+        Type[] copy = (Type[]) new Object[size()];
+
+        int i = 0;
+        for (Type element : this) {
+            copy[i++] = element;
+        }
+
+        for (int j = 0; j < copy.length - 1; j++) {
+            Comparable<Type> compCurrentElement = (Comparable<Type>) copy[j];
+            Type compNextElement = copy[j + 1];
+            if (compCurrentElement.compareTo(compNextElement) <= 0)
+                continue;
+            Type temp = copy[j];
+            copy[j] = copy[j + 1];
+            copy[j + 1] = temp;
+            j = -1;
+        }
+        this.clear();
+        for (Type element : copy) {
+            this.addLast(element);
+        }
+    }
+
 
     /**
      * The method uses the natural ordering inside the list.
@@ -146,6 +173,19 @@ public interface OurList<Type> extends Iterable<Type> {
     }
 
 
+    default Type getMin() {
+        if (size() == 0)
+            throw new EmptyListException();
+
+        Type min = this.get(0);
+        for (Type currentElement : this) {
+            Comparable<Type> compCurrentElement = (Comparable<Type>) currentElement;
+            if (compCurrentElement.compareTo(min) < 0)
+                min = currentElement;
+        }
+        return min;
+    }
+
     default Type getMin(Comparator<Type> comparator) {
 
         return getMax(comparator.reversed());
@@ -163,5 +203,4 @@ public interface OurList<Type> extends Iterable<Type> {
 //        }
 //        return min;
     }
-
 }

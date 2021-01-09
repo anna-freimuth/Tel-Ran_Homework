@@ -266,6 +266,7 @@ public abstract class OurListTest {
             list.addLast("string" + j);
         }
     }
+
     @Test
     public void testIterator_emptyList() {
         Iterator<String> iterator = stringList.iterator();
@@ -423,8 +424,9 @@ public abstract class OurListTest {
             iterator.next();
         });
     }
+
     @Test
-    public void sort(){
+    public void sort() {
         integerOurList.addLast(6);
         integerOurList.addLast(28);
         integerOurList.addLast(9);
@@ -432,7 +434,21 @@ public abstract class OurListTest {
 
 
         integerOurList.sort(integerComparator);
-        assertEquals(28,integerOurList.get(3));
+        assertEquals(28, integerOurList.get(3));
+    }
+
+    @Test
+    public void sort_comparable() {
+        integerOurList.addLast(6);
+        integerOurList.addLast(28);
+        integerOurList.addLast(9);
+        integerOurList.addLast(15);
+        integerOurList.remove(9);
+        integerOurList.addLast(30);
+
+
+        integerOurList.sort();
+        assertEquals(30, integerOurList.get(3));
     }
 
     @Test
@@ -442,10 +458,21 @@ public abstract class OurListTest {
         integerOurList.addLast(9);
         integerOurList.addLast(15);
 
-        assertEquals(30,integerOurList.getMax(integerComparator));
+        assertEquals(30, integerOurList.getMax(integerComparator));
     }
+
     @Test
-    public void getMax_emptyList_throwsEmptyListException(){
+    public void getMax_comparable() {
+        integerOurList.addLast(6);
+        integerOurList.addLast(30);
+        integerOurList.addLast(9);
+        integerOurList.addLast(15);
+
+        assertEquals(30, integerOurList.getMax2());
+    }
+
+    @Test
+    public void getMax_emptyList_throwsEmptyListException() {
         assertThrows(EmptyListException.class, () -> {
             integerOurList.getMax(integerComparator);
         });
@@ -459,15 +486,26 @@ public abstract class OurListTest {
         integerOurList.addLast(9);
         integerOurList.addLast(15);
 
-        assertEquals(6,integerOurList.getMin(integerComparator));
+        assertEquals(6, integerOurList.getMin(integerComparator));
     }
 
     @Test
-    public void getMin_emptyList_throwsEmptyListException(){
+    public void getMin_comparable() {
+        integerOurList.addLast(6);
+        integerOurList.addLast(30);
+        integerOurList.addLast(9);
+        integerOurList.addLast(15);
+        integerOurList.remove(6);
+        integerOurList.addLast(4);
+
+        assertEquals(4, integerOurList.getMin());
+    }
+
+    @Test
+    public void getMin_emptyList_throwsEmptyListException() {
         assertThrows(EmptyListException.class, () -> {
             integerOurList.getMin(integerComparator);
         });
     }
 
 }
-
