@@ -105,6 +105,15 @@ public class OurLinkedList<T> implements OurList<T> {
         Iterator<T> iterator = new BackwardIterator();
         return iterator;
     }
+    // Casting, down-casting etc.
+//        List<Integer> list = new ArrayList<>();
+//        ArrayList<Integer> arrayList = (ArrayList<Integer>) list;
+
+//        LinkedList<Integer> linkedList = new LinkedList<>();
+//        Deque<Integer> deque = linkedList;
+//
+//        linkedList.removeLast();
+//        deque.removeLast();
 
     @Override
     public void sort(Comparator<T> comparator) {

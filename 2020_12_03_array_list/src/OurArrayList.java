@@ -123,29 +123,7 @@ public class OurArrayList<Type> implements OurList<Type> {
         return iterator;
     }
 
-    @Override
-    public void sort(Comparator<Type> comparator) {
-        Object[] copy = new Object[size];
 
-        int i = 0;
-        for (Type element : this) {
-            copy[i++] = element;
-        }
-
-        for (int j = 0; j < copy.length - 1; j++) {
-            if (comparator.compare((Type) copy[j], (Type) copy[j + 1]) <= 0) {
-                continue;
-            }
-            Type temp = (Type) copy[j];
-            copy[j] = copy[j + 1];
-            copy[j + 1] = temp;
-            j = -1;
-        }
-        this.clear();
-        for (Object element : copy) {
-            this.addLast((Type) element);
-        }
-    }
 
     private class ForwardIterator implements Iterator<Type> {
         int currentIndex = 0;
@@ -191,32 +169,6 @@ public class OurArrayList<Type> implements OurList<Type> {
         }
     }
 
-    public Type getMax(Comparator<Type> comparator) {
-        if (size == 0)
-            throw new EmptyListException();
 
-        Type max = (Type) source[0];
-        for (int i = 1; i < size; i++) {
-            Type temp = (Type) source[i];
-            if (comparator.compare(temp, max) > 0)
-                max = temp;
 
-        }
-        return max;
-    }
-
-    @Override
-    public Type getMin(Comparator<Type> comparator) {
-
-        if (size == 0)
-            throw new EmptyListException();
-
-        Type min = (Type) source[0];
-        for (int i = 1; i < size; i++) {
-            Type temp = (Type) source[i];
-            if (comparator.compare(temp, min) < 0)
-                min = temp;
-        }
-        return min;
-    }
 }

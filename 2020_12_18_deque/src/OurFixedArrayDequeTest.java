@@ -117,22 +117,6 @@ class OurFixedArrayDequeTest {
     }
 
 
-    @Test
-    public void testBackwardIterator(){
-
-        int[] array = {10, -8, 0, 15};
-        OurFixedArrayDeque<Integer> secondList = new OurFixedArrayDeque<>(10);
-        for (int num : array) {
-            listDeque.addLast(num);
-            secondList.addLast(num);
-        }
-
-        Iterator<Integer> iterator = listDeque.backwardIterator();
-
-        while (iterator.hasNext()) {
-            assertEquals(secondList.removeLast(), iterator.next());
-        }
-    }
 
     @Test
     public void testIterable() {
@@ -147,6 +131,28 @@ class OurFixedArrayDequeTest {
         for (int currentIntegerToCheck: listDeque) {
             assertEquals(secondList.removeFirst(), currentIntegerToCheck);
         }
+    }
+    @Test
+    public void testIterable2() {
+        OurFixedArrayDeque<Integer> deque = new OurFixedArrayDeque<Integer>(10);
+        Integer[] expected = {18, 6, 5, 5};
+
+        deque.addLast(1);
+        deque.addLast(2);
+        deque.addLast(6);
+        deque.removeFirst();
+        deque.removeFirst();
+        deque.addFirst(18);
+        deque.addLast(5);
+        deque.addLast(5);
+
+        int i = 0;
+        for (Integer elt : deque) {
+            System.out.println(elt);
+            assertEquals(expected[i], elt);
+            i++;
+        }
+        assertEquals(4, i);
     }
 
 

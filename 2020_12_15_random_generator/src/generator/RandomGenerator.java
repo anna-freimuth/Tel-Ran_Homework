@@ -15,6 +15,7 @@ public class RandomGenerator {
         for (int i = 0; i < n; i++) {
             res.add(rule.nextInt());
         }
+
         return res;
     }
 }

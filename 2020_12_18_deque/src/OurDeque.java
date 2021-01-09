@@ -27,9 +27,4 @@ public interface OurDeque<T> extends Iterable<T> {
 
     int size();
 
-
-    Iterator<T> forwardIterator();
-
-    Iterator<T> backwardIterator();
-
 }

@@ -83,60 +83,32 @@ public class OurFixedArrayDeque<T> implements OurDeque<T> {
     }
 
 
-    @Override
-    public Iterator<T> forwardIterator() {
-        Iterator<T> iterator = new ForwardIterator();
-        return iterator;
-    }
-
-    @Override
-    public Iterator<T> backwardIterator() {
-        Iterator<T> iterator = new BackwardIterator();
-        return iterator;
-    }
 
     @Override
     public Iterator<T> iterator() {
-        return forwardIterator();
+        return new ForwardIterator();
     }
 
-    public class ForwardIterator implements Iterator<T> {
-        int currentIndex = firstEltId;
+    private class ForwardIterator implements Iterator<T> {
+
+        int currentElementNumber = 0;
 
         @Override
         public boolean hasNext() {
-            return currentIndex < size;
+            return currentElementNumber < size;
         }
 
         @Override
         public T next() {
-            if (currentIndex >= size)
+            if (currentElementNumber >= size)
                 throw new IndexOutOfBoundsException();
 
-            T res = (T) source[currentIndex];
-            currentIndex++;
-            return res;
+            int currentIndex = (firstEltId + currentElementNumber) % capacity;
+            currentElementNumber++;
+            return (T) source[currentIndex];
         }
     }
 
-    private class BackwardIterator implements Iterator<T> {
-        int currentIndex = (firstEltId + size - 1) % capacity;
-
-        @Override
-        public boolean hasNext() {
-            return currentIndex >= 0;
-        }
-
-        @Override
-        public T next() {
-            if (currentIndex < 0)
-                throw new IndexOutOfBoundsException();
-
-            T res = (T) source[currentIndex];
-            currentIndex--;
-            return res;
-        }
-    }
 
 
     public int getMax() {

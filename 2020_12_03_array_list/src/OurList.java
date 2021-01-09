@@ -69,11 +69,99 @@ public interface OurList<Type> extends Iterable<Type> {
 
     /**
      * sorts the list according to the 'comparator' rule
+     *
      * @param comparator the rule to sort the list
      */
-    void sort(Comparator<Type> comparator);
 
-    Type getMax (Comparator<Type>comparator);
+    default void sort(Comparator<Type> comparator) {
+        Object[] copy = new Object[size()];
 
-    Type getMin(Comparator<Type>comparator);
+        int i = 0;
+        for (Type element : this) {
+            copy[i++] = element;
+        }
+
+        for (int j = 0; j < copy.length - 1; j++) {
+            if (comparator.compare((Type) copy[j], (Type) copy[j + 1]) <= 0) {
+                continue;
+            }
+            Type temp = (Type) copy[j];
+            copy[j] = copy[j + 1];
+            copy[j + 1] = temp;
+            j = -1;
+        }
+        this.clear();
+        for (Object element : copy) {
+            this.addLast((Type) element);
+        }
+    }
+
+    /**
+     * The method uses the natural ordering inside the list.
+     * Meaning the elements must be comparable
+     *
+     * @return max according to the natural ordering
+     */
+    default Type getMax2() {
+        if (size() == 0)
+            throw new EmptyListException();
+
+        Type max = this.get(0);
+        for (Type currentElement : this) {
+            Comparable<Type> compCurrentElement = (Comparable<Type>) currentElement;
+            if (compCurrentElement.compareTo(max) > 0)
+                max = currentElement;
+        }
+        return max;
+    }
+
+    default Type getMax(Comparator<Type> comparator) {
+        if (size() == 0)
+            throw new EmptyListException();
+
+        Type max = this.get(0);
+        for (Type currentElement : this) {
+            if (comparator.compare(currentElement, max) > 0)
+                max = currentElement;
+        }
+
+        //OR
+//        Iterator<Type> iterator = iterator();
+//        Type max = iterator.next();
+//
+//        while (iterator.hasNext()) {
+//            Type currentElement = iterator.next();
+//            if (comparator.compare(currentElement, max) > 0)
+//                max = currentElement;
+//        }
+
+        //OR
+//        Type max = (Type) source[0];
+//        for (int i = 1; i < size; i++) {
+//            Type temp = (Type) source[i];
+//            if (comparator.compare(temp, max) > 0)
+//                max = temp;
+//        }
+        return max;
+    }
+
+
+    default Type getMin(Comparator<Type> comparator) {
+
+        return getMax(comparator.reversed());
+
+        //OR
+
+//        if (size == 0)
+//            throw new EmptyListException();
+//
+//        Type min = (Type) source[0];
+//        for (int i = 1; i < size; i++) {
+//            Type temp = (Type) source[i];
+//            if (comparator.compare(temp, min) < 0)
+//                min = temp;
+//        }
+//        return min;
+    }
+
 }
