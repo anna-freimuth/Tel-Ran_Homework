@@ -452,6 +452,26 @@ public abstract class OurListTest {
     }
 
     @Test
+    public void sort_comparable_orderOfAllElements(){
+
+        integerOurList.addLast(6);
+        integerOurList.addLast(28);
+        integerOurList.addLast(9);
+        integerOurList.addLast(15);
+        integerOurList.addLast(30);
+        integerOurList.addLast(9);
+
+        integerOurList.sort();
+
+        assertEquals(6, integerOurList.removeById(0));
+        assertEquals(9, integerOurList.removeById(0));
+        assertEquals(9, integerOurList.removeById(0));
+        assertEquals(15, integerOurList.removeById(0));
+        assertEquals(28, integerOurList.removeById(0));
+        assertEquals(30, integerOurList.removeById(0));
+    }
+
+    @Test
     public void getMax() {
         integerOurList.addLast(6);
         integerOurList.addLast(30);
@@ -468,7 +488,7 @@ public abstract class OurListTest {
         integerOurList.addLast(9);
         integerOurList.addLast(15);
 
-        assertEquals(30, integerOurList.getMax2());
+        assertEquals(30, integerOurList.getMax());
     }
 
     @Test

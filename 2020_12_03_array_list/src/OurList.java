@@ -129,7 +129,7 @@ public interface OurList<Type> extends Iterable<Type> {
      *
      * @return max according to the natural ordering
      */
-    default Type getMax2() {
+    default Type getMax() {
         if (size() == 0)
             throw new EmptyListException();
 
