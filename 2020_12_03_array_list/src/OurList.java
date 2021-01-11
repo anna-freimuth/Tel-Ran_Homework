@@ -174,17 +174,30 @@ public interface OurList<Type> extends Iterable<Type> {
 
 
     default Type getMin() {
-        if (size() == 0)
-            throw new EmptyListException();
+//        if (size() == 0)
+//            throw new EmptyListException();
 
-        Type min = this.get(0);
-        for (Type currentElement : this) {
-            Comparable<Type> compCurrentElement = (Comparable<Type>) currentElement;
-            if (compCurrentElement.compareTo(min) < 0)
-                min = currentElement;
-        }
-        return min;
+//        Type min = this.get(0);
+//        for (Type currentElement : this) {
+//            Comparable<Type> compCurrentElement = (Comparable<Type>) currentElement;
+//            if (compCurrentElement.compareTo(min) < 0)
+//                min = currentElement;
+//        }
+//        return min;
+
+        //OR
+        // Iterator <Type> iterator = iterator();
+       // Type first = iterator.next();
+        Comparator<Type> comparator = new Comparator<Type>() {
+            @Override
+            public int compare(Type o1, Type o2) {
+                Comparable<Type> comparableO1 =(Comparable<Type>)  o1;
+                return comparableO1.compareTo(o2);
+            }
+        };
+        return getMin(comparator);
     }
+
 
     default Type getMin(Comparator<Type> comparator) {
 
