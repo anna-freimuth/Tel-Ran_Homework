@@ -124,7 +124,6 @@ public class OurArrayList<Type> implements OurList<Type> {
     }
 
 
-
     private class ForwardIterator implements Iterator<Type> {
         int currentIndex = 0;
 
@@ -168,7 +167,4 @@ public class OurArrayList<Type> implements OurList<Type> {
             return res;
         }
     }
-
-
-
 }
