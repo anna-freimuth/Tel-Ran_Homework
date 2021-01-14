@@ -8,6 +8,7 @@ public class Main {
         Map<Auto, String> map = new HashMap<>();
         fillMap(map);
 
+
         Auto anotherGreyOpel = new Auto("Opel", "Grey");
         String value = map.get(anotherGreyOpel);
         System.out.println(value);

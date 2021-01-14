@@ -1,3 +1,4 @@
+
 import java.util.Iterator;
 
 /**
@@ -13,7 +14,7 @@ public class OurHashMap<K, V> implements OurMap<K, V> {
     private Pair<K, V>[] source;
     private int size;
     private double loadFactor;
-    private int capacity; //length.source
+    private int capacity; //source.length
 
     public OurHashMap() {
         source = new Pair[INITIAL_CAPACITY];
@@ -52,6 +53,22 @@ public class OurHashMap<K, V> implements OurMap<K, V> {
     }
 
     private void resize() {
+        capacity = capacity * 2;
+        Pair<K, V>[] newSource = new Pair[capacity];
+
+
+        for (Pair<K, V> cell : source) {
+
+            Pair<K, V> currentCell = cell;
+            while (currentCell != null) {
+                int newIndex = hash(currentCell.key) % capacity;
+                currentCell.next = newSource[newIndex];
+                newSource[newIndex] = currentCell;
+
+                currentCell = currentCell.next;
+            }
+        }
+        source = newSource;
     }
 
     private Pair<K, V> find(K key) {
@@ -68,17 +85,24 @@ public class OurHashMap<K, V> implements OurMap<K, V> {
 
     @Override
     public V get(K key) {
+        Pair<K, V> pair = find(key);
+
+        if (key.equals(pair.key))
+            return pair.value;
+
         return null;
     }
 
     @Override
-    public V remove(K kex) {
+    public V remove(K key) {
         return null;
+        // return pair != null ? pair.value : null;
     }
+
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
