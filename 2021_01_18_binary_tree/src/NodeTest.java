@@ -40,12 +40,12 @@ class NodeTest {
     }
 
     @Test
-    public void getHeight_9Node_expected1() {
-        assertEquals(1, Node.getHeight(nine));
+    public void getHeight_9Node_expected0() {
+        assertEquals(0, Node.getHeight(nine));
     }
 
     @Test
-    public void getHeight_4Node_expected5() {
-        assertEquals(5, Node.getHeight(four));
+    public void getHeight_4Node_expected4() {
+        assertEquals(4, Node.getHeight(four));
     }
 }

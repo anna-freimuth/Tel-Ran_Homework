@@ -5,7 +5,7 @@ public interface OurMap<K, V> {
 
     public V get(K key);
 
-    public V remove(K kex);
+    public V remove(K key);
 
     public int size();
 
