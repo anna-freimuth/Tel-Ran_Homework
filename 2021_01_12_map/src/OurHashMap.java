@@ -127,6 +127,11 @@ public class OurHashMap<K, V> implements OurMap<K, V> {
         return null;
     }
 
+    @Override
+    public boolean containsKey(K key) {
+        return find(key) != null;
+    }
+
     private void clearPair(Pair<K, V> pair) {
         pair.next = null;
         pair.value = null;

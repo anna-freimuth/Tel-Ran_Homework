@@ -1,11 +1,11 @@
 import org.junit.jupiter.api.BeforeEach;
 
-class OurHashMapTest extends OurMapTest {
+
+class OurTreeMapTest extends OurMapTest {
 
     @BeforeEach
     public void init() {
-        map = new OurHashMap<>();
+        map = new OurTreeMap<>();
     }
 }
-
 
