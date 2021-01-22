@@ -117,22 +117,19 @@ public class OurTreeMap<K, V> implements OurMap<K, V> {
     }
 
     private V linearRemove(Node<K, V> nodeToRemove) {
-
-        Node<K, V> toRemove = findNode(nodeToRemove.key);
-
         if (root == null)
             return null;
 
-        Node<K, V> nextLeft = toRemove.left;
-        Node<K, V> nextRight = toRemove.right;
+        Node<K, V> nextLeft = nodeToRemove.left;
+        Node<K, V> nextRight = nodeToRemove.right;
         if (nodeToRemove.left != null) {
-            replaceNodeInParent(toRemove, nextLeft);
-            nextLeft.parent = toRemove.parent;
+            replaceNodeInParent(nodeToRemove, nextLeft);
+            nextLeft.parent = nodeToRemove.parent;
         } else if (nodeToRemove.right != null) {
-            replaceNodeInParent(toRemove, nextRight);
-            nextRight.parent = toRemove.parent;
+            replaceNodeInParent(nodeToRemove, nextRight);
+            nextRight.parent = nodeToRemove.parent;
         } else {
-            replaceNodeInParent(toRemove, null);
+            replaceNodeInParent(nodeToRemove, null);
         }
 
         return nodeToRemove.value;
@@ -150,7 +147,7 @@ public class OurTreeMap<K, V> implements OurMap<K, V> {
     }
 
     private V junctionRemove(Node<K, V> nodeToRemove) {
-        Node<K, V> nextNode = findNext(nodeToRemove);
+        Node<K, V> nextNode = findNextInRightBranch(nodeToRemove);
         V oldValue = nodeToRemove.value;
         nodeToRemove.key = nextNode.key;
         nodeToRemove.value = nextNode.value;
@@ -158,21 +155,14 @@ public class OurTreeMap<K, V> implements OurMap<K, V> {
         return oldValue;
     }
 
-    private Node<K, V> findNext(Node<K, V> nodeToRemove) {
-
-        Node<K, V> current = nodeToRemove;
-        if (current != null) {
-
-            current = current.right;
-
-            if (current == null)
-                return null;
-
-            while (nodeToRemove.left != null) {
-                current = current.left;
-            }
+    private Node<K, V> findNextInRightBranch(Node<K, V> node) {
+        Node<K, V> current = node;
+        current = current.right;
+        while (current.left != null) {
+            current = current.left;
         }
         return current;
+
     }
 
     @Override
@@ -185,13 +175,60 @@ public class OurTreeMap<K, V> implements OurMap<K, V> {
         return size;
     }
 
+    private Node<K, V> findMinNode() {
+        Node<K, V> current = root;
+        while (current.left != null) {
+            current = current.left;
+        }
+        return current;
+    }
+
+    private Node<K, V> findNextRightParent(Node<K, V> current) {
+        while (current.parent != null && current.parent.left != current) {
+            current = current.parent;
+        }
+        return current.parent;
+    }
+
     @Override
     public Iterator<K> keyIterator() {
-        return null;
+        return new KeyIterator();
     }
 
     @Override
     public Iterator<V> valueIterator() {
         return null;
+    }
+
+    private class KeyIterator implements Iterator<K> {
+
+        Node<K, V> current;
+        int currentElementNumber;
+
+        public KeyIterator() {
+            if (size > 0)
+                current = findMinNode();
+        }
+
+        @Override
+        public boolean hasNext() {
+            return currentElementNumber < size;
+        }
+
+        @Override
+        public K next() {
+            if (currentElementNumber == size)
+                throw new IndexOutOfBoundsException();
+
+            K result = current.key;
+
+            if (current.right != null)
+                current = findNextInRightBranch(current);
+            else
+                current = findNextRightParent(current);
+
+            currentElementNumber++;
+            return result;
+        }
     }
 }
