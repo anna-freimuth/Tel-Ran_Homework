@@ -221,7 +221,6 @@ public class OurTreeMap<K, V> implements OurMap<K, V> {
                 throw new IndexOutOfBoundsException();
 
             K result = current.key;
-
             if (current.right != null)
                 current = findNextInRightBranch(current);
             else

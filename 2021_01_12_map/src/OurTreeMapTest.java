@@ -66,7 +66,6 @@ class OurTreeMapTest extends OurMapTest {
         map.put(5, "b");
 
         List<Integer> expected = Arrays.asList(-10, -5, 1, 2, 3, 5);
-
         List<Integer> actual = new ArrayList<>();
 
         Iterator<Integer> keyIterator = map.keyIterator();
