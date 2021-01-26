@@ -74,4 +74,43 @@ class OurTreeMapTest extends OurMapTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void testValueIterator_severalElements_increasing() {
+        map.put(1, "a");
+        map.put(-10, "b");
+        map.put(5, "f");
+        map.put(3, "e");
+        map.put(-5, "d");
+        map.put(2, "c");
+
+        List<String> expected = Arrays.asList("b", "d", "a", "c", "e", "f");
+
+        List<String> actual = new ArrayList<>();
+
+        Iterator<String> valueIterator = map.valueIterator();
+        while (valueIterator.hasNext())
+            actual.add(valueIterator.next());
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testValueIterator_severalElements_rootToTheLeft() {
+        map.put(-10, "a");
+        map.put(-5, "b");
+        map.put(1, "c");
+        map.put(2, "d");
+        map.put(3, "e");
+        map.put(5, "f");
+
+        List<String> expected = Arrays.asList("a", "b", "c", "d", "e", "f");
+        List<String> actual = new ArrayList<>();
+
+        Iterator<String> valueIterator = map.valueIterator();
+        while (valueIterator.hasNext())
+            actual.add(valueIterator.next());
+
+        assertEquals(expected, actual);
+    }
 }

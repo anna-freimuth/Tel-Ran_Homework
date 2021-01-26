@@ -197,15 +197,15 @@ public class OurTreeMap<K, V> implements OurMap<K, V> {
 
     @Override
     public Iterator<V> valueIterator() {
-        return null;
+        return new ValueIterator();
     }
 
-    private class KeyIterator implements Iterator<K> {
+    private class NodeIterator implements Iterator<Node<K, V>> {
 
         Node<K, V> current;
         int currentElementNumber;
 
-        public KeyIterator() {
+        public NodeIterator() {
             if (size > 0)
                 current = findMinNode();
         }
@@ -216,11 +216,11 @@ public class OurTreeMap<K, V> implements OurMap<K, V> {
         }
 
         @Override
-        public K next() {
+        public Node<K, V> next() {
             if (currentElementNumber == size)
                 throw new IndexOutOfBoundsException();
 
-            K result = current.key;
+            Node<K, V> result = current;
             if (current.right != null)
                 current = findNextInRightBranch(current);
             else
@@ -228,6 +228,38 @@ public class OurTreeMap<K, V> implements OurMap<K, V> {
 
             currentElementNumber++;
             return result;
+        }
+    }
+
+    private class KeyIterator implements Iterator<K> {
+
+        NodeIterator iterator = new NodeIterator();
+
+        @Override
+        public boolean hasNext() {
+
+            return iterator.hasNext();
+        }
+
+        @Override
+        public K next() {
+            return iterator.next().key;
+        }
+    }
+
+    private class ValueIterator implements Iterator<V> {
+
+        NodeIterator iterator = new NodeIterator();
+
+        @Override
+        public boolean hasNext() {
+
+            return iterator.hasNext();
+        }
+
+        @Override
+        public V next() {
+            return iterator.next().value;
         }
     }
 }
