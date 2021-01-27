@@ -1,5 +1,6 @@
 package map;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 /**
@@ -44,7 +45,6 @@ public class OurHashMap<K, V> implements OurMap<K, V> {
         if (pair != null) {
             V res = pair.value;
             pair.value = value;
-            size++;
             return res;
         }
         int index = hash(key) % capacity;
@@ -155,6 +155,7 @@ public class OurHashMap<K, V> implements OurMap<K, V> {
 
         int index = 0;
         int position = 0;
+        int size = size();
         Pair<K, V> currentPair;
 
         KeyIterator() {
