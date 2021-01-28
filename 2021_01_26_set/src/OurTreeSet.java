@@ -1,10 +1,11 @@
-import map.OurHashMap;
+
+import map.OurTreeMap;
 
 import java.util.Iterator;
 
-public class OurHashSet<T> implements OurSet<T> {
+public class OurTreeSet<T> implements OurSet<T> {
 
-    private OurHashMap<T, Object> source = new OurHashMap<>();
+    OurTreeMap<T, Object> source = new OurTreeMap<>();
     private final Object stubValue = new Object();
 
     @Override
@@ -27,24 +28,20 @@ public class OurHashSet<T> implements OurSet<T> {
         return source.size();
     }
 
-
     @Override
-    public void retainAll(OurSet<T> another) {
-//        for (T value: this) {
-//            if (!another.contains(value)) remove(value);
-//        }
-        OurSet<T> temp = new OurHashSet<>();
+    public void retainAll(OurSet another) {
+        OurSet temp = new OurTreeSet<>();
 
         for (T elt : this) {
             if (!another.contains(elt))
                 temp.add(elt);
         }
+
         this.removeAll(temp);
     }
 
-
     @Override
-    public Iterator<T> iterator() {
+    public Iterator iterator() {
         return source.keyIterator();
     }
 }
