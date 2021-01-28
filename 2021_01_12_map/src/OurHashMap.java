@@ -153,7 +153,7 @@ public class OurHashMap<K, V> implements OurMap<K, V> {
 
         int index = 0;
         int position = 0;
-        int size = size();
+
         Pair<K, V> currentPair;
 
         KeyIterator() {
