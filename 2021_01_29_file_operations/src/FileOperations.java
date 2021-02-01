@@ -17,6 +17,7 @@ public class FileOperations {
         try (FileOutputStream outputStream = new FileOutputStream(filename)) {
 
             String string = String.join("\n", strings);
+            //String string = String.join(System.lineSeparator(), strings);
             outputStream.write(string.getBytes());
         }
     }
