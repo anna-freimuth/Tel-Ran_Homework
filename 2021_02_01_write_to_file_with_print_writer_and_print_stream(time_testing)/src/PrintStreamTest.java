@@ -10,13 +10,12 @@ public class PrintStreamTest implements SpeedTest{
     }
 
     @Override
-    public void run(String text) {
-        printStream.println(text);
-    }
+    public void run(String text, int times) {
 
-    @Override
-    public void close() {
-    printStream.close();
+        for (int i = 0; i < times; i++) {
+            printStream.println(text);
+        }
+        printStream.close();
     }
 
     @Override

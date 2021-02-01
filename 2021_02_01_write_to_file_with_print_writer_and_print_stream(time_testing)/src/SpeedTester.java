@@ -15,10 +15,7 @@ public class SpeedTester {
         for(SpeedTest test : speedTests){
            test.printTestName();
            long before = System.currentTimeMillis();
-           for(int i= 0; i < times; i ++){
-               test.run(text);
-           }
-           test.close();
+           test.run(text, times);
            long after = System.currentTimeMillis()-before;
             System.out.println(after + " ms");
         }

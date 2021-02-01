@@ -10,13 +10,10 @@ public class PrintWriterTest implements SpeedTest {
     }
 
     @Override
-    public void run(String text) {
-        printWriter.println(text);
-    }
-
-    @Override
-    public void close() {
-        printWriter.close();
+    public void run(String text, int times) {
+        for (int i = 0; i < times; i++) {
+            printWriter.println(text);
+        }
     }
 
     @Override
