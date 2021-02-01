@@ -14,6 +14,7 @@ public class PrintWriterTest implements SpeedTest {
         for (int i = 0; i < times; i++) {
             printWriter.println(text);
         }
+        printWriter.close();
     }
 
     @Override
