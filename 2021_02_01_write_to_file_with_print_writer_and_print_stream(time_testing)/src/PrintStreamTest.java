@@ -1,21 +1,16 @@
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintStream;
 
-public class PrintStreamTest implements SpeedTest{
-
-    PrintStream printStream;
-
-    public PrintStreamTest(String filename) throws FileNotFoundException {
-        printStream  = new PrintStream(filename);
-    }
+public class PrintStreamTest implements SpeedTest {
 
     @Override
-    public void run(String text, int times) {
+    public void run(String text, int times, String filename) throws IOException {
 
-        for (int i = 0; i < times; i++) {
-            printStream.println(text);
+        try (PrintStream printStream = new PrintStream(filename)) {
+            for (int i = 0; i < times; i++) {
+                printStream.println(text);
+            }
         }
-        printStream.close();
     }
 
     @Override

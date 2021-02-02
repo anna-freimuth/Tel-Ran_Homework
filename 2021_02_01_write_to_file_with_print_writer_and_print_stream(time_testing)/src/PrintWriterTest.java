@@ -1,20 +1,15 @@
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 public class PrintWriterTest implements SpeedTest {
 
-    PrintWriter printWriter;
-
-    public PrintWriterTest(String filename) throws FileNotFoundException {
-        printWriter = new PrintWriter(filename);
-    }
-
     @Override
-    public void run(String text, int times) {
-        for (int i = 0; i < times; i++) {
-            printWriter.println(text);
+    public void run(String text, int times, String filename) throws IOException {
+        try (PrintWriter printWriter = new PrintWriter(filename)) {
+            for (int i = 0; i < times; i++) {
+                printWriter.println(text);
+            }
         }
-        printWriter.close();
     }
 
     @Override
