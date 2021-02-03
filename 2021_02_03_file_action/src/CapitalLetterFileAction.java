@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class CapitalLetterFileAction extends FileAction {
@@ -7,6 +8,10 @@ public class CapitalLetterFileAction extends FileAction {
 
     @Override
     protected List<String> perform(List<String> text) {
-        return null;
+        List<String> result = new ArrayList<>();
+        for(String str : text){
+            result.add(str.toUpperCase());
+        }
+        return result;
     }
 }

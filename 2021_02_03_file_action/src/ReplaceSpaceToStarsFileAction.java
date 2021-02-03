@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReplaceSpaceToStarsFileAction extends FileAction {
@@ -18,6 +19,10 @@ public class ReplaceSpaceToStarsFileAction extends FileAction {
      */
     @Override
     protected List<String> perform(List<String> text) {
-        return null;
+        List<String> result = new ArrayList<>();
+        for(String str: text){
+            result.add(str.replaceAll(pattern,target));
+        }
+        return result;
     }
 }
