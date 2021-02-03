@@ -19,7 +19,6 @@ public abstract class FileAction {
      */
     public void handleFile(String filename) throws IOException {
 
-        FileOperations fileOperations = new FileOperations();
         List<String> text = fileOperations.readToList(filename);
         fileOperations.writeList(perform(text), filename);
     }
