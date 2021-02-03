@@ -28,13 +28,9 @@ public class BufferReader {
 
     public void writeToFile() throws IOException {
         try (PrintWriter printWriter = new PrintWriter(filename)) {
-            StringBuilder sb = new StringBuilder();
-            for (String str : result) {
-                sb.append(str);
-                sb.append("\n");
+            for(String string : result){
+                printWriter.println(string);
             }
-            String str = sb.toString();
-            printWriter.print(str);
         }
     }
 }
