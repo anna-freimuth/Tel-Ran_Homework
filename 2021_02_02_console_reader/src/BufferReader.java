@@ -10,7 +10,6 @@ public class BufferReader {
     String filename;
     List<String> result = new ArrayList<>();
 
-
     public BufferReader(String filename) {
         this.filename = filename;
     }
