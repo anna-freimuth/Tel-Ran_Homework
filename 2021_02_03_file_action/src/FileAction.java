@@ -18,7 +18,7 @@ public abstract class FileAction {
      * @param filename name of the file to handle
      */
     public void handleFile(String filename) throws IOException {
-        //FileOperations fileOperations = new FileOperations();
+        FileOperations fileOperations = new FileOperations();
         List<String> text = fileOperations.readToList(filename);
         fileOperations.writeList(perform(text), filename);
     }
