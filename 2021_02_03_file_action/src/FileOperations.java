@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class FileOperations {
+
     /**
      * Writes the list of strings into the file, clearing it if the file exists and starts every string from
      * new line
