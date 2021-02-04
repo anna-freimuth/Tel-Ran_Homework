@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReplaceSpaceToStarsFileAction extends FileAction {
+public class ReplaceInFileAction extends FileAction {
     private String pattern;
     private String target;
 
-    protected ReplaceSpaceToStarsFileAction(FileOperations fileOperations, String pattern, String target) {
+    protected ReplaceInFileAction(FileOperations fileOperations, String pattern, String target) {
         super(fileOperations);
         this.pattern = pattern;
         this.target = target;
