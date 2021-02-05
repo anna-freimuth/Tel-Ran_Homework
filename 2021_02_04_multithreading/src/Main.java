@@ -16,7 +16,5 @@ public class Main {
         CharThreadRunnable charThreadRunnable = new CharThreadRunnable(5,'@');
         Thread thread = new Thread(charThreadRunnable);
         thread.start();
-
-
     }
 }
