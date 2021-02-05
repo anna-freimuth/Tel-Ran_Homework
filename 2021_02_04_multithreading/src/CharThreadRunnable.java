@@ -12,7 +12,13 @@ public class CharThreadRunnable implements Runnable {
         System.out.println("Start CharThread Runnable");
         for (int i = 0; i < times; i++) {
             System.out.println(ch);
-        }
 
+           // Thread.yield();      instead Thread.sleep
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException e) {
+              break;
+            }
+        }
     }
 }
