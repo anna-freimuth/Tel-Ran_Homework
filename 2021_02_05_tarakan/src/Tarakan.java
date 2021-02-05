@@ -1,9 +1,10 @@
 import java.util.List;
+import java.util.Random;
 
 public class Tarakan implements Runnable {
 
     final private String name;
-    final private int distance;  //1cm  runs between 50 and 100 mc randomly
+    final private int distance;  // has a speed of 1 every between 50 to 100 ms randomly
     final List<Score> scoreList;
     private long startingTime;
 
@@ -16,8 +17,21 @@ public class Tarakan implements Runnable {
 
     @Override
     public void run() {
-        //TODO the tarakan runs here
+        Random random = new Random();
+        int sleepTotal = 0;
+        for (int i = 0; i < distance; i++) {
+            int min = 50;
+            int max = 100;
+            int sleepPerCm = (random.nextInt((max - min) + 1) + min);
+            sleepTotal += sleepPerCm;
+            try {
+                Thread.sleep(sleepTotal);
+            } catch (InterruptedException e) {
+                return;
+            }
+        }
 
-        //TODO after the tarakan comes to the finish, it signs up itself into the scoreList
+        long score = System.currentTimeMillis() - startingTime;
+        scoreList.add(new Score(name, (int) score));
     }
 }
