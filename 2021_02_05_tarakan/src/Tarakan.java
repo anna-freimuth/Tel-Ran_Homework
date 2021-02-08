@@ -2,11 +2,11 @@ import java.util.List;
 import java.util.Random;
 
 public class Tarakan implements Runnable {
-    Random random = new Random();
+    private final Random random = new Random();
     final private String name;
     final private int distance;  // has a speed of 1 every between 50 to 100 ms randomly
     final List<Score> scoreList;
-    private long startingTime;
+    private final long startingTime;
 
     public Tarakan(String name, int distance, List<Score> scoreList, long startingTime) {
         this.name = name;
