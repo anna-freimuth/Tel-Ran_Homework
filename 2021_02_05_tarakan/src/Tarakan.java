@@ -2,7 +2,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Tarakan implements Runnable {
-
+    Random random = new Random();
     final private String name;
     final private int distance;  // has a speed of 1 every between 50 to 100 ms randomly
     final List<Score> scoreList;
@@ -17,7 +17,6 @@ public class Tarakan implements Runnable {
 
     @Override
     public void run() {
-        Random random = new Random();
         int sleepTotal = 0;
         for (int i = 0; i < distance; i++) {
             int min = 50;
