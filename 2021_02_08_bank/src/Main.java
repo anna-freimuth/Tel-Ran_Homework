@@ -11,7 +11,7 @@ public class Main {
 
         workers.add(new Thread(new Worker("Tanya", credit, result, startingTime, 100, 200)));
         workers.add(new Thread(new Worker("Petya", credit, result, startingTime, 200, 300)));
-        workers.add(new Thread(new CreativeWorker("Vasya", credit, result, startingTime)));
+        workers.add(new Thread(new CreativeWorker("Vasya", credit, result, startingTime,200,300)));
 
         for (Thread worker : workers)
             worker.start();

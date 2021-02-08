@@ -9,12 +9,16 @@ public class CreativeWorker implements Runnable {
     final List<Speed> speedList;
     private final long startingTime;
     private int count = 0;
+    private int min;
+    private int max;
 
-    public CreativeWorker(String name, int credits, List<Speed> speedList, long startingTime) {
+    public CreativeWorker(String name, int credits, List<Speed> speedList, long startingTime,int min, int max) {
         this.name = name;
         this.credits = credits;
         this.speedList = speedList;
         this.startingTime = startingTime;
+        this.min = min;
+        this.max = max;
     }
 
     @Override
@@ -32,8 +36,6 @@ public class CreativeWorker implements Runnable {
                 }
 
             } else {
-                int min = 200;
-                int max = 300;
                 int sleepPerCm = (random.nextInt((max - min) + 1) + min);
                 try {
                     Thread.sleep(sleepPerCm);
