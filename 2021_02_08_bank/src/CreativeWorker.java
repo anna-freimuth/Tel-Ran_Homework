@@ -12,7 +12,7 @@ public class CreativeWorker implements Runnable {
     private int min;
     private int max;
 
-    public CreativeWorker(String name, int credits, List<Speed> speedList, long startingTime,int min, int max) {
+    public CreativeWorker(String name, int credits, List<Speed> speedList, long startingTime, int min, int max) {
         this.name = name;
         this.credits = credits;
         this.speedList = speedList;
@@ -33,6 +33,7 @@ public class CreativeWorker implements Runnable {
                     Thread.sleep(sleepPerCm);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    return;
                 }
 
             } else {
@@ -41,18 +42,24 @@ public class CreativeWorker implements Runnable {
                     Thread.sleep(sleepPerCm);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    return;
                 }
             }
         }
         long speed = System.currentTimeMillis() - startingTime;
-        speedList.add(new Speed(name, (int) speed));
+        Speed result = new Speed(name, (int) speed);
+
+        synchronized (speedList) {
+            speedList.add(result);
+        }
     }
 
     private boolean creative() {
         if (random.nextInt(100) < 20) {
             count = 3;
             return true;
-        };
+        }
+        ;
         return false;
     }
 }

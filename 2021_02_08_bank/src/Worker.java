@@ -29,9 +29,14 @@ public class Worker implements Runnable {
                 Thread.sleep(sleepPerCm);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                return;
             }
         }
         long speed = System.currentTimeMillis() - startingTime;
-        speedList.add(new Speed(name, (int) speed));
+        Speed result = new Speed(name, (int) speed);
+
+        synchronized (speedList) {
+            speedList.add(result);
+        }
     }
 }
