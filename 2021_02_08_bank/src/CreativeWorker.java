@@ -59,7 +59,6 @@ public class CreativeWorker implements Runnable {
             count = 3;
             return true;
         }
-        ;
         return false;
     }
 }
