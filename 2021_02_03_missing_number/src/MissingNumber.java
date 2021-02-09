@@ -14,7 +14,7 @@ public class MissingNumber {
             int currentNumber = list.get(i);
             int nextNumber = list.get(i + 1);
             if (currentNumber + 1 != nextNumber) {
-                return nextNumber;
+                return currentNumber + 1;
             }
         }
         return -1;

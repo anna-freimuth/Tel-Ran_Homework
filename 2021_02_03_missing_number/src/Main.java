@@ -14,6 +14,7 @@ public class Main {
     private static List<Integer> missingNumberList() {
         Random random = new Random();
         int missingNumber = random.nextInt(100) + 1;
+        System.out.println("Missing number is: " + missingNumber);
         List<Integer> list = new ArrayList<>();
         for (int i = 1; i <= 100; i++) if (i != missingNumber) list.add(i);
         Collections.shuffle(list);
