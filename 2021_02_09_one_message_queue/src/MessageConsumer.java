@@ -1,12 +1,21 @@
-public class MessageConsumer implements Runnable{
+public class MessageConsumer implements Runnable {
+
     OneItemStringQueue queue;   //capacity 1
+
+    public MessageConsumer(OneItemStringQueue queue) {
+        this.queue = queue;
+    }
+
     @Override
     public void run() {
 
-        while(true){
-            //TODO accept an item from our ome message queue and handle it(for example just print it out)
+        while (true) {
+            try {
+                System.out.println(queue.removeLast());
 
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
-
     }
 }
