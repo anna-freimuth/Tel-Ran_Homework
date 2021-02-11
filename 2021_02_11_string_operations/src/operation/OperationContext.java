@@ -4,16 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class OperationContext {
-    private Map<String, IStringOperation>operationByName;
-    {
+    private Map<String, IStringOperation> operationByName;
 
-        //TODO add more operations here
+    {
         IStringOperation upperCase = new UpperCaseSO();
+        IStringOperation lowerCase = new LowerCaseSO();
         operationByName = new HashMap<>();
         operationByName.put(upperCase.getName(), upperCase);
+        operationByName.put(lowerCase.getName(), lowerCase);
     }
 
-    public IStringOperation getOperation(String name){
-        //TODO complete (getname from map)
+    public IStringOperation getOperation(String name) {
+        return operationByName.get(name);
     }
 }

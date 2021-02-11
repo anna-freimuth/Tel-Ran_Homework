@@ -1,13 +1,14 @@
 package operation;
 
-public class UpperCaseSO implements IStringOperation {
+public class LowerCaseSO implements IStringOperation {
+
     @Override
     public String operate(String input) {
-        return input.toUpperCase();
+        return input.toLowerCase();
     }
 
     @Override
     public String getName() {
-        return "upper_case";
+        return "lower_case";
     }
 }
