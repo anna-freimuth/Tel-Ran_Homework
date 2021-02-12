@@ -31,11 +31,11 @@ public class Consumer implements Runnable {
 
     String handleRawString(String line) {
         String[] result = line.split(separator);
-        String operationName = result[1];
-        String stringToPerform = result[0];
 
         if (result.length != 2)
             return line + wrongFormat;
+        String operationName = result[1];
+        String stringToPerform = result[0];
 
         IStringOperation stringOperation = context.getOperation(operationName);
 
