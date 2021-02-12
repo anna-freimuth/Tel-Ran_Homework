@@ -28,7 +28,7 @@ public class Consumer implements Runnable {
             e.printStackTrace();
         }
     }
-
+    // TODO test with mocking
     String handleRawString(String line) {
         String[] result = line.split(separator);
 
