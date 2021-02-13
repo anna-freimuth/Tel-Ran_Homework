@@ -1,16 +1,18 @@
 import operation.OperationContext;
 
 import java.io.*;
+import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class Main {
     final static String INPUT = "2021_02_11_string_operations/src/input.txt";
     final static String OUTPUT = "2021_02_11_string_operations/src/output.txt";
+    final static String CONFIG_PROPS = "2021_02_11_string_operations/src/config.props";
 
-    public static void main(String[] args) throws FileNotFoundException, InterruptedException {
-//TODO read the props file and retrieve the operation paths from it. Then create an instance of the PerationContext
-        //TODO using these paths.
-        OperationContext operationContext = new OperationContext();
+    public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+
+        ConfigReader configReader = new ConfigReader(CONFIG_PROPS);
+        OperationContext operationContext = new OperationContext(configReader.getOperationPaths());
 
         BufferedReader br = new BufferedReader(new FileReader(INPUT));
         PrintWriter writer = new PrintWriter(new FileOutputStream(OUTPUT));
@@ -22,10 +24,6 @@ public class Main {
         Thread consumerThread3 = new Thread(new Consumer(queue, writer, operationContext));
         Thread supplierThread = new Thread(new Supplier(br, queue));
 
-//        consumerThread1.setDaemon(true);
-//        consumerThread2.setDaemon(true);
-//        consumerThread3.setDaemon(true);
-
         supplierThread.start();
 
         consumerThread1.start();
@@ -33,7 +31,15 @@ public class Main {
         consumerThread3.start();
 
         supplierThread.join();
-        //TODO come up with ending the consumer threads on time.
+
+        consumerThread1.interrupt();
+        consumerThread2.interrupt();
+        consumerThread3.interrupt();
+
+        consumerThread1.join();
+        consumerThread2.join();
+        consumerThread3.join();
+
         writer.close();
     }
 }

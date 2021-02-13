@@ -12,6 +12,8 @@ public class Consumer implements Runnable {
     private final String wrongFormat = "#wrong format";
     private final String wrongOperation = "#wrong operation";
 
+    private Boolean supplierIsNotDone = true;
+
     public Consumer(BlockingQueue<String> queue, PrintWriter writer, OperationContext context) {
         this.queue = queue;
         this.writer = writer;
@@ -21,14 +23,20 @@ public class Consumer implements Runnable {
     @Override
     public void run() {
         try {
-            while (true) {
-                writer.println(handleRawString(queue.take()));
+            while (!queue.isEmpty() || supplierIsNotDone) {
+                try {
+                    String str = queue.take();
+                    String res = handleRawString(str);
+                    writer.println(res);
+                } catch (InterruptedException e) {
+                    supplierIsNotDone = false;
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    // TODO test with mocking
+
     String handleRawString(String line) {
         String[] result = line.split(separator);
 
