@@ -15,8 +15,6 @@ public class OperationContext {
 //        operationByName.put(upperCase.getName(), upperCase);
 //        operationByName.put(lowerCase.getName(), lowerCase);
 //    }
-public OperationContext() {
-}
 
     public OperationContext(List<String> operationPaths) throws ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         operationByName = new HashMap<>();

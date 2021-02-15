@@ -1,6 +1,7 @@
 import operation.IStringOperation;
 import operation.OperationContext;
 import java.io.PrintWriter;
+import java.util.NoSuchElementException;
 import java.util.concurrent.BlockingQueue;
 
 public class Consumer implements Runnable {
@@ -8,9 +9,9 @@ public class Consumer implements Runnable {
     private final PrintWriter writer;
     private final OperationContext context;
 
-    private final String separator = "#";
-    private final String wrongFormat = "#wrong format";
-    private final String wrongOperation = "#wrong operation";
+    public final String separator = "#";
+    public final String wrongFormat = "#wrong format";
+    public final String wrongOperation = "#wrong operation";
 
     private Boolean supplierIsNotDone = true;
 
@@ -22,8 +23,7 @@ public class Consumer implements Runnable {
 
     @Override
     public void run() {
-        try {
-            while (!queue.isEmpty() || supplierIsNotDone) {
+            while (supplierIsNotDone) {
                 try {
                     String str = queue.take();
                     String res = handleRawString(str);
@@ -32,9 +32,19 @@ public class Consumer implements Runnable {
                     supplierIsNotDone = false;
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        // !queue.isEmpty
+        while (true) {
+            String line;
+            try {
+                line = queue.remove();
+            } catch (NoSuchElementException e) {
+                e.printStackTrace();
+                break;
+            }
+            String resLine = handleRawString(line);
+            writer.println(resLine);
         }
+
     }
 
     String handleRawString(String line) {
