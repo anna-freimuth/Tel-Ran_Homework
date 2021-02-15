@@ -10,7 +10,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import static org.mockito.Mockito.*;
 
-public class StringOperationsTest {
+public class ConsumerTest {
 
     OperationContext operationContext;
     BlockingQueue<String> queue = new LinkedBlockingQueue<>();
