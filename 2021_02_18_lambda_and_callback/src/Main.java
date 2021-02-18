@@ -10,10 +10,15 @@ public class Main {
         Function<List<String>, List<String>> task1 = (listWithoutDuplicates) -> listWithDuplicates.stream().distinct().collect(Collectors.toList());
         System.out.println(task1.apply(listWithDuplicates));
 
-        int a = 2;
-        int b = 3;
-        int c = 4;
+        final int a = 2;
+        final int b = 3;
+        final int c = 4;
         Function<Integer, Integer> task2 = (x) -> a * x * x + b * x + c;
-        System.out.println(task2.apply(5));
+
+        printCallback(task2);
+    }
+
+    private static void printCallback(Function<Integer, Integer> callback) {
+        System.out.println(callback.apply(5));
     }
 }
