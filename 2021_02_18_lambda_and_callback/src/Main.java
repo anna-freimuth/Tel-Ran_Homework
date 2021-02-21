@@ -1,7 +1,9 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,6 +18,11 @@ public class Main {
         Function<Integer, Integer> task2 = (x) -> a * x * x + b * x + c;
 
         printCallback(task2);
+
+        String reduced = Stream.of("cat","dog","human")
+        //String reduced = (new ArrayList<String>()).stream()
+                .reduce((String accumulatedString,String currentItem) -> accumulatedString + currentItem).get(); //reduce returns Optional
+        System.out.println(reduced);
     }
 
     private static void printCallback(Function<Integer, Integer> callback) {
