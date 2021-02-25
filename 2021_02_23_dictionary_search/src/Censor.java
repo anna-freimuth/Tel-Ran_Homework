@@ -5,7 +5,6 @@ public class Censor {
     private final Set<String> dictionary;
 
     public Censor(Set<String> dictionary) {
-
         this.dictionary = dictionary;
     }
 
