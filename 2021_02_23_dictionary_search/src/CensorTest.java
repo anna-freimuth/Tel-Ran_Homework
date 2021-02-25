@@ -18,23 +18,23 @@ class CensorTest {
     }
 
     @Test
-    void verify_test_True(){
+    void verify_test_False(){
         String apple = "An apple is edible";
         String appleCapitalised = "that grows on an APPLE tree";
         String fruit = "and is a very tasty fruit";
         String multipleHits = "which is why I like the fruit apple the best";
 
-        assertTrue(censor.verify(apple));
-        assertTrue(censor.verify(appleCapitalised));
-        assertTrue(censor.verify(fruit));
-        assertTrue(censor.verify(multipleHits));
+        assertFalse(censor.verify(apple));
+        assertFalse(censor.verify(appleCapitalised));
+        assertFalse(censor.verify(fruit));
+        assertFalse(censor.verify(multipleHits));
     }
     @Test
-    void verify_test_False(){
+    void verify_test_True(){
         String text = "The tomato is the edible berry of the plant Solanum lycopersicum";
         String compositeWordApple = "it does not fit into an apple-pie";
 
-        assertFalse(censor.verify(text));
-        assertFalse(censor.verify(compositeWordApple));
+        assertTrue(censor.verify(text));
+        assertTrue(censor.verify(compositeWordApple));
     }
 }

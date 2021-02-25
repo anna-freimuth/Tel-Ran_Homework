@@ -5,6 +5,7 @@ public class Censor {
     private final Set<String> dictionary;
 
     public Censor(Set<String> dictionary) {
+
         this.dictionary = dictionary;
     }
 
@@ -13,7 +14,7 @@ public class Censor {
 
         return Arrays.stream(res)
                 .map(String::toLowerCase)
-                .anyMatch(dictionary::contains)
+                .noneMatch(dictionary::contains)
         ;
     }
 }
