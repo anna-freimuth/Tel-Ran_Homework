@@ -14,8 +14,8 @@ public class Main {
                 .collect(Collectors.summingInt(number -> number * number));
 
         Integer multiplicationSquaresOfNumbers = numbers.stream()
-                .collect(Collectors.reducing(1, (number, number2)
-                        -> number * number2 * number2)
+                .collect(Collectors.reducing(1, (current, next)
+                        -> current * next * next)
 
                 );
 
