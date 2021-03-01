@@ -11,4 +11,7 @@ public class LogEntry {
         return url;
     }
 
+    public String getLogin() {
+        return login;
+    }
 }
