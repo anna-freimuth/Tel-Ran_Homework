@@ -16,7 +16,7 @@ public class BirthdayAndNewYear {
         LocalDate myCatBirthdayThisYear = LocalDate.of(2021, 8, 17);
         LocalDate now = LocalDate.now();
 
-        System.out.println("Birthday was in this year already: " + now.isBefore(myCatBirthdayThisYear));
+        System.out.println("Birthday was in this year already: " + now.isAfter(myCatBirthdayThisYear));
         System.out.println(DAYS.between(now, myCatBirthdayThisYear) + " days until next birthday this year, version1");
         //or
         System.out.println((myCatBirthdayThisYear.minusDays(now.getDayOfYear()).getDayOfYear() + " days until next birthday this year, version2"));
