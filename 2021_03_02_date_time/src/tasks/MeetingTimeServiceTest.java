@@ -5,7 +5,8 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalTime;
 import java.time.ZoneId;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class MeetingTimeServiceTest {
     MeetingTimeService meetingTimeService = new MeetingTimeService();
@@ -33,5 +34,33 @@ class MeetingTimeServiceTest {
         ZoneId petersburg = ZoneId.of("Europe/Moscow");
 
         assertThrows(NoOverlapException.class, () -> meetingTimeService.intersectWorkingTime(start, end, berlin, start, end, petersburg));
+    }
+
+    @Test
+    public void test_intersectWorkingTime_overlap_Alaska_Kamchatka() throws NoOverlapException {
+
+        LocalTime startAlaska = LocalTime.of(7, 0);
+        LocalTime startKamchatka = LocalTime.of(15, 0);
+        int end = 15;
+        ZoneId alaska = ZoneId.of("America/Anchorage");
+        ZoneId kamchatka = ZoneId.of("Asia/Kamchatka");
+
+        int result = meetingTimeService.intersectWorkingTime(startAlaska, end, alaska, startKamchatka, end, kamchatka);
+
+        assertEquals(2, result);
+    }
+
+    @Test
+    public void test_intersectWorkingTime_overlap_Alaska_Kamchatka_2() throws NoOverlapException {
+
+        LocalTime startAlaska = LocalTime.of(7, 0);
+        LocalTime startKamchatka = LocalTime.of(7, 0);
+        int end = 5;
+        ZoneId alaska = ZoneId.of("America/Anchorage");
+        ZoneId kamchatka = ZoneId.of("Asia/Kamchatka");
+
+        int result = meetingTimeService.intersectWorkingTime(startAlaska, end, alaska, startKamchatka, end, kamchatka);
+
+        assertEquals(2, result);
     }
 }

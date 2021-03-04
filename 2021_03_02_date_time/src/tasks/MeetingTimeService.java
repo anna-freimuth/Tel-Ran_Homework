@@ -7,9 +7,13 @@ import java.time.temporal.ChronoUnit;
 public class MeetingTimeService {
 
     public int intersectWorkingTime(LocalTime start1, int hours, ZoneId zone1, LocalTime start2, int hours2, ZoneId zone2) throws NoOverlapException {
-        ZonedDateTime office1Start = ZonedDateTime.of(LocalDateTime.of(LocalDate.now(), start1), zone1);
+        ZonedDateTime office1Start = ZonedDateTime.of(LocalDateTime.of(LocalDate.now(), start1), zone1).withZoneSameInstant(ZoneOffset.UTC);
+        ZonedDateTime office2Start = ZonedDateTime.of(LocalDateTime.of(LocalDate.now(), start2), zone2).withZoneSameInstant(ZoneOffset.UTC);
+
+        if (office1Start.getDayOfWeek() != office2Start.getDayOfWeek())
+            office2Start = office1Start.isAfter(office2Start) ? office2Start.plusDays(1) : office2Start.minusDays(1);
+
         ZonedDateTime office1End = office1Start.plus(hours, ChronoUnit.HOURS);
-        ZonedDateTime office2Start = ZonedDateTime.of(LocalDateTime.of(LocalDate.now(), start2), zone2);
         ZonedDateTime office2End = office2Start.plus(hours2, ChronoUnit.HOURS);
 
         ZonedDateTime start = office1Start.isBefore(office2Start) ? office2Start : office1Start;

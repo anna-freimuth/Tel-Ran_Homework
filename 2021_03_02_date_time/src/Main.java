@@ -3,6 +3,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 
+import static java.time.ZoneId.getAvailableZoneIds;
+
 public class Main {
     public static void main(String[] args) {
         // LocalDate
@@ -46,7 +48,7 @@ public class Main {
         System.out.println("Year ago: " + yearAgo);
 
         // ZoneDateTime
-        System.out.println(ZoneId.getAvailableZoneIds());
+        System.out.println(getAvailableZoneIds());
         ZonedDateTime minskMorning = ZonedDateTime.of(
                 LocalDateTime.of(2021, Month.MARCH, 2, 6, 0),
                 ZoneId.of("Europe/Minsk")
@@ -83,6 +85,7 @@ public class Main {
         System.out.println(fromPattern.toString()); //2021-03-02
         System.out.println(fromPattern.format(formatter)); //2021.03.02
 
+        System.out.println(getAvailableZoneIds());
     }
 }
 
