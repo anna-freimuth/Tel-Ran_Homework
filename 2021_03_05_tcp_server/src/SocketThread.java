@@ -30,12 +30,15 @@ public class SocketThread implements Runnable {
                 }
             } catch (SocketException e) {
                 /* expected disconnect */
+            }finally {
+                socketInput.close();
+                socketOutput.close();
             }
         } catch (IOException ioException) {
             /* do nothing */
-        }
 
         System.out.println("Disconnected");
     }
 }
 
+}
